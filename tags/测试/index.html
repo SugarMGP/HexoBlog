@@ -20,8 +20,8 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="白糖的记事本">
-<meta property="og:url" content="https://blog.sugarmgp.icu/index.html">
+<meta property="og:title" content="标签 - 测试">
+<meta property="og:url" content="https://blog.sugarmgp.icu/tags/%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="白糖的记事本">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="SugarMGP">
@@ -29,7 +29,7 @@
   
   
   
-  <title>白糖的记事本</title>
+  <title>标签 - 测试 - 白糖的记事本</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -83,7 +83,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 100vh;">
+<div class="header-inner" style="height: 80vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -189,7 +189,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="标签 - 测试"></span>
           
         </div>
 
@@ -213,53 +213,28 @@
     
       <div class="container nopadding-x-md">
         <div id="board"
-          style="margin-top: 0">
+          >
           
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">
                 
 
-
-  <div class="row mx-auto index-card">
+<div class="list-group">
+  <p class="h4">共计 1 篇文章</p>
+  <hr>
+  
+  
     
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h2 class="index-header">
-        
-        <a href="/2024/10/19/hello-world/" target="_self">
-          Hello World
-        </a>
-      </h2>
-
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2024/10/19/hello-world/" target="_self">
-        <div>
-          Hello World 神说：「要有光！」于是就有了光。 望舒说：「要有博客！」于是我就搭建了一个博客
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2024-10-19 19:35" pubdate>
-              2024-10-19
-            </time>
-          </div>
-        
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/%E6%B5%8B%E8%AF%95/">#测试</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
+      <p class="h5">2024</p>
+    
+    <a href="/2024/10/19/hello-world/" class="list-group-item list-group-item-action">
+      <time>10-19</time>
+      <div class="list-group-item-title">Hello World</div>
+    </a>
+  
+</div>
 
 
 
@@ -348,37 +323,7 @@
       }
       var text = subtitle.getAttribute('data-typed-text');
       
-        jQuery.ajax({
-          type: 'GET',
-          url: 'https://v1.jinrishici.com/all.json',
-          headers: {},
-          dataType: 'json',
-          success: function(result) {
-            var apiText;
-            if (result) {
-              var keys = 'content'.split(',');
-              if (result instanceof Array) {
-                result = result[0];
-              }
-              for (const k of keys) {
-                var value = result[k];
-                if (typeof value === 'string') {
-                  apiText = value;
-                  break;
-                } else if (value instanceof Object) {
-                  result = value;
-                }
-              }
-            }
-            apiText ? typing(apiText) : typing(text);
-          },
-          error: function(xhr, status, error) {
-            if (error) {
-              console.error('Failed to request https://v1.jinrishici.com/all.json:', error);
-            }
-            typing(text);
-          }
-        })
+        typing(text);
       
     })(window, document);
   </script>
