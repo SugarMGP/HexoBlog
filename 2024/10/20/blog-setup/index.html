@@ -26,24 +26,24 @@
 <meta property="og:site_name" content="白糖的记事本">
 <meta property="og:description" content="前言Hexo 是一个快速、简洁且高效的博客框架，可以通过 Markdown（或其他渲染引擎）解析文章并生成静态网页 Vercel 是一家基于云的开发平台，提供免费的静态网站托管服务 本文将介绍如何通过 Vercel 部署 Hexo 博客 准备工作安装 Node.js 和 Git，修改 NPM 为淘宝镜像源（可选） 12# 修改 NPM 为淘宝镜像源npm config set registry h">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/hZozv1ymj74pVAN.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/HZo4QSg8rTpEtFC.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/Pj5gpmWilSqXEHL.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/UNHogBazDx3peYu.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/fgvcESr2oqDBC5b.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/5zO43WvikXZnSLA.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/IRkhZKu5a7iJlUH.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/j6NIU1OiagREkVn.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/AdByxfOY4F9DEQr.png">
-<meta property="og:image" content="https://s2.loli.net/2024/10/20/r7u2g4xRyPHtkJq.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/1.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/2.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/3.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/4.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/5.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/7.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/8.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/9.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/10.png">
+<meta property="og:image" content="https://blog.sugarmgp.icu/img/blog-setup/11.png">
 <meta property="article:published_time" content="2024-10-20T03:37:35.000Z">
-<meta property="article:modified_time" content="2024-10-20T05:25:31.132Z">
+<meta property="article:modified_time" content="2024-10-20T05:32:27.573Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="Vercel">
 <meta property="article:tag" content="教程">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://s2.loli.net/2024/10/20/hZozv1ymj74pVAN.png">
+<meta name="twitter:image" content="https://blog.sugarmgp.icu/img/blog-setup/1.png">
   
   
   
@@ -306,7 +306,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">hexo g<br>hexo s<br></code></pre></td></tr></table></figure>
 
 <p>如果配置正确则会得到以下提示</p>
-<img src="https://s2.loli.net/2024/10/20/hZozv1ymj74pVAN.png" srcset="/img/loading.gif" lazyload  width="500" />
+<img src="/img/blog-setup/1.png" srcset="/img/loading.gif" lazyload  width="500" />
 
 <p>打开浏览器访问 <code>http://localhost:4000</code> 即可看到你的 Hexo 博客页面，说明博客在本地运行成功</p>
 <h2 id="上传到-Github"><a href="#上传到-Github" class="headerlink" title="上传到 Github"></a>上传到 Github</h2><p>我们已经完成了 Hexo 的本地运行，接下来我们将本地博客上传到 Github 仓库进行托管</p>
@@ -314,11 +314,11 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 输入后一直回车即可</span><br>ssh-keygen -t rsa -C <span class="hljs-string">&quot;Github绑定的邮箱地址&quot;</span><br></code></pre></td></tr></table></figure>
 
 <p>打开 <code>%USERPROFILE%/.ssh</code> 文件夹，找到 <code>id_rsa.pub</code> 文件</p>
-<img src="https://s2.loli.net/2024/10/20/HZo4QSg8rTpEtFC.png" srcset="/img/loading.gif" lazyload  width="500" />
+<img src="/img/blog-setup/2.png" srcset="/img/loading.gif" lazyload  width="500" />
 
 <p>打开这个文件并复制里面的内容</p>
 <p>然后打开 Github 的 <a target="_blank" rel="noopener" href="https://github.com/settings/keys">SSH Keys 设置页</a>，点击 <code>New SSH Key</code> 按钮，将刚才复制的内容粘贴到 <code>Key</code>，并随便输入一个标题</p>
-<img src="https://s2.loli.net/2024/10/20/Pj5gpmWilSqXEHL.png" srcset="/img/loading.gif" lazyload  width="600" />
+<img src="/img/blog-setup/3.png" srcset="/img/loading.gif" lazyload  width="600" />
 
 <p>回到终端输入<code>ssh -T git@github.com</code>，输入yes，出现<code>You’ve successfully …</code>的字样说明连接成功</p>
 <p>进入博客站点目录，打开<code>_config.yml</code>文件，找到<code>deploy</code>部分，修改成以下内容</p>
@@ -326,26 +326,26 @@
 
 <p>在博客站点目录下打开终端，输入<code>hexo g -d</code>，即可自动生成静态网页并上传到 Github 仓库</p>
 <h2 id="部署到-Vercel"><a href="#部署到-Vercel" class="headerlink" title="部署到 Vercel"></a>部署到 Vercel</h2><p>用 Github 账号登录 <a target="_blank" rel="noopener" href="https://vercel.com/">Vercel</a></p>
-<img src="https://s2.loli.net/2024/10/20/UNHogBazDx3peYu.png" srcset="/img/loading.gif" lazyload  width="350" />
+<img src="/img/blog-setup/4.png" srcset="/img/loading.gif" lazyload  width="350" />
 
 <p>点击 <code>Add New Project</code> 按钮，选择刚才上传的 Github 仓库并点击 <code>Import</code>，点击 <code>Deploy</code> 按钮，等待部署完成</p>
-<img src="https://s2.loli.net/2024/10/20/fgvcESr2oqDBC5b.png" srcset="/img/loading.gif" lazyload  width="450" />
-<img src="https://s2.loli.net/2024/10/20/5zO43WvikXZnSLA.png" srcset="/img/loading.gif" lazyload  width="350" />
+<img src="/img/blog-setup/5.png" srcset="/img/loading.gif" lazyload  width="450" />
+<img src="/img/blog-setup/7.png" srcset="/img/loading.gif" lazyload  width="350" />
 
 <p>打开新建的 Project，点击 <code>Visit</code> 按钮，即可看到你的 Hexo 博客页面</p>
 <h2 id="域名设置"><a href="#域名设置" class="headerlink" title="域名设置"></a>域名设置</h2><p>打开 Project Settings，点击 <code>Domains</code> 按钮，进入域名设置页面</p>
 <p>Vercel 给你默认分配了一个域名，你可以点击 <code>Edit</code> 按钮修改它</p>
-<img src="https://s2.loli.net/2024/10/20/IRkhZKu5a7iJlUH.png" srcset="/img/loading.gif" lazyload  width="600" />
+<img src="/img/blog-setup/8.png" srcset="/img/loading.gif" lazyload  width="600" />
 
-<img src="https://s2.loli.net/2024/10/20/j6NIU1OiagREkVn.png" srcset="/img/loading.gif" lazyload  width="600" />
+<img src="/img/blog-setup/9.png" srcset="/img/loading.gif" lazyload  width="600" />
 
 <p>如果需要绑定自己的域名，你可以输入自己的域名并点击 <code>Add</code> 按钮</p>
 <p>并打开域名服务商的 DNS 管理页面，将域名的 CNAME 记录指向 <code>vercel.cdn.yt-blog.top</code>（一个公益 Vercel CDN）</p>
-<img src="https://s2.loli.net/2024/10/20/AdByxfOY4F9DEQr.png" srcset="/img/loading.gif" lazyload  width="550" />
+<img src="/img/blog-setup/10.png" srcset="/img/loading.gif" lazyload  width="550" />
 
 <p>等待 DNS 解析生效，然后打开浏览器访问你的域名，即可看到你的 Hexo 博客页面</p>
 <h2 id="博客配置"><a href="#博客配置" class="headerlink" title="博客配置"></a>博客配置</h2><p>博客的配置文件位于博客站点目录下的 <code>_config.yml</code> 文件，你可以根据自己的需求修改以下内容</p>
-<img src="https://s2.loli.net/2024/10/20/r7u2g4xRyPHtkJq.png" srcset="/img/loading.gif" lazyload  width="600" />
+<img src="/img/blog-setup/11.png" srcset="/img/loading.gif" lazyload  width="600" />
 
 <p>更多高级设置请参考 <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方文档</a></p>
 
