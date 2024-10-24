@@ -27,7 +27,7 @@
 <meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T14:27:17.000Z">
-<meta property="article:modified_time" content="2024-10-24T15:47:00.682Z">
+<meta property="article:modified_time" content="2024-10-24T15:51:20.065Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="zap">
 <meta property="article:tag" content="lumberjack">
@@ -292,7 +292,7 @@
             
               <div class="markdown-body">
                 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。<br>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>Zap</strong> 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。<br>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃</p>
 <h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u go.uber.org/zap<br></code></pre></td></tr></table></figure>
 
 <p>Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调用相应的方法来记录不同级别的日志。</p>
@@ -351,7 +351,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Sugared Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：若没有设置全局 Logger，则调用 <code>zap.L()</code> 和 <code>zap.S()</code> 并不会有日志输出。</p>
-
+<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2>
                 
               </div>
             
