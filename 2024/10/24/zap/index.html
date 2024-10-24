@@ -19,15 +19,15 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调">
+    <meta name="description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Zap 实现高性能日志记录">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/10/24/zap/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调">
+<meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T14:27:17.000Z">
-<meta property="article:modified_time" content="2024-10-24T15:51:20.065Z">
+<meta property="article:modified_time" content="2024-10-24T15:55:05.780Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="zap">
 <meta property="article:tag" content="lumberjack">
@@ -292,15 +292,16 @@
             
               <div class="markdown-body">
                 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>Zap</strong> 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。<br>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>Zap</strong> 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。</p>
+<p>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃</p>
 <h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u go.uber.org/zap<br></code></pre></td></tr></table></figure>
 
 <p>Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调用相应的方法来记录不同级别的日志。</p>
 <p>Zap 提供了两种日志记录器：<code>Sugared Logger</code> 和 <code>Logger</code>.</p>
 <ul>
-<li><p><code>Sugared Logger</code> 并重性能与易用性，支持结构化和 printf 风格的日志记录。</p>
+<li><p><code>Sugared Logger</code> 并重性能与易用性，支持<strong>结构化和 printf 风格</strong>的日志记录。</p>
 </li>
-<li><p><code>Logger</code> 非常强调性能，不提供 printf 风格的 api，只支持强类型的、结构化的日志记录。</p>
+<li><p><code>Logger</code> 非常强调性能，不提供 printf 风格的 api，<strong>只支持强类型的、结构化的</strong>日志记录。</p>
 </li>
 </ul>
 <p>举例如下：</p>
@@ -316,7 +317,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// Example</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Example&quot;</span><span class="hljs-punctuation">&#125;</span><br><br><span class="hljs-comment">// Development</span><br><span class="hljs-number">2024</span><span class="hljs-number">-10</span><span class="hljs-number">-24</span>T22<span class="hljs-punctuation">:</span><span class="hljs-number">52</span><span class="hljs-punctuation">:</span><span class="hljs-number">16.544</span>+<span class="hljs-number">0800</span>    INFO    ConfessionWallServer/main.go<span class="hljs-punctuation">:</span><span class="hljs-number">14</span> Development<br><br><span class="hljs-comment">// Production</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;ts&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1729781536.5583117</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;caller&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ConfessionWallServer/main.go:18&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Production&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>可以看到，日志等级，日志输出格式，默认字段都有所差异。</p>
-<h2 id="定制-Logger"><a href="#定制-Logger" class="headerlink" title="定制 Logger"></a>定制 Logger</h2><p>Zap 提供了丰富的配置选项，可以定制 Logger 的行为。</p>
+<h2 id="定制-Logger"><a href="#定制-Logger" class="headerlink" title="定制 Logger"></a>定制 Logger</h2><p>Zap 提供了丰富的配置选项。</p>
 <h3 id="使用自定义配置"><a href="#使用自定义配置" class="headerlink" title="使用自定义配置"></a>使用自定义配置</h3><p>我们可以通过自己创建 Config 来配置 Logger 的行为。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// 定制 Config</span><br>    config := zap.Config&#123;<br>        Level:       zap.NewAtomicLevelAt(zap.InfoLevel), <span class="hljs-comment">// 最低日志等级</span><br>        Encoding:    <span class="hljs-string">&quot;json&quot;</span>, <span class="hljs-comment">// 日志输出格式</span><br>        EncoderConfig: zap.EncoderConfig&#123;<br>            TimeKey:        <span class="hljs-string">&quot;time&quot;</span>, <span class="hljs-comment">// 时间字段名</span><br>            LevelKey:       <span class="hljs-string">&quot;level&quot;</span>, <span class="hljs-comment">// 日志等级字段名</span><br>            NameKey:        <span class="hljs-string">&quot;logger&quot;</span>, <span class="hljs-comment">// 日志名字段名</span><br>            CallerKey:      <span class="hljs-string">&quot;caller&quot;</span>, <span class="hljs-comment">// 调用者字段名</span><br>            MessageKey:     <span class="hljs-string">&quot;msg&quot;</span>, <span class="hljs-comment">// 消息字段名</span><br>            StacktraceKey:  <span class="hljs-string">&quot;stacktrace&quot;</span>, <span class="hljs-comment">// 堆栈字段名</span><br>            LineEnding:     zapcore.DefaultLineEnding,<br>            EncodeLevel:    zapcore.LowercaseLevelEncoder,<br>            EncodeTime:     zapcore.ISO8601TimeEncoder,<br>            EncodeDuration: zapcore.SecondsDurationEncoder,<br>            EncodeCaller:   zapcore.ShortCallerEncoder,<br>        &#125;,<br>        OutputPaths:      []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;stdout&quot;</span>&#125;, <span class="hljs-comment">// 日志输出路径</span><br>        ErrorOutputPaths: []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;stderr&quot;</span>&#125;, <span class="hljs-comment">// 错误日志输出路径</span><br>    &#125;<br><br>    <span class="hljs-comment">// 通过 Config 构建 Logger</span><br>    logger, _ := config.Build()<br><br>    <span class="hljs-comment">// 在程序结束时同步缓冲区</span><br>    <span class="hljs-keyword">defer</span> logger.Sync()<br><br>    <span class="hljs-comment">// 记录日志</span><br>    logger.Info(<span class="hljs-string">&quot;hello!&quot;</span>, zap.String(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>), zap.Int(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">20</span>))<br>&#125;<br></code></pre></td></tr></table></figure>
 
