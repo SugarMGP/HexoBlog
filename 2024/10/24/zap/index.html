@@ -27,7 +27,7 @@
 <meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T14:27:17.000Z">
-<meta property="article:modified_time" content="2024-10-24T15:55:05.780Z">
+<meta property="article:modified_time" content="2024-10-26T06:01:41.764Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="zap">
 <meta property="article:tag" content="lumberjack">
@@ -239,7 +239,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          1.4k 字
         
       </span>
     
@@ -250,7 +250,7 @@
         
         
         
-          11 分钟
+          12 分钟
         
       </span>
     
@@ -352,7 +352,12 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Sugared Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：若没有设置全局 Logger，则调用 <code>zap.L()</code> 和 <code>zap.S()</code> 并不会有日志输出。</p>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a>TODO</h2>
+<h2 id="使用-lumberjack-实现日志滚动记录"><a href="#使用-lumberjack-实现日志滚动记录" class="headerlink" title="使用 lumberjack 实现日志滚动记录"></a>使用 lumberjack 实现日志滚动记录</h2><p><strong>Lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u github.com/natefinch/lumberjack<br></code></pre></td></tr></table></figure>
+
+<p>lumberjack 提供了一个滚动记录器 logger，它实现了 <code>io.Writer</code> 和 <code>io.Closer</code> 接口，我们可以使用 <code>zapcore.AddSync</code> 来将其与 Zap 结合使用。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    lumberJackLogger := &amp;lumberjack.Logger&#123;<br>        Filename:   filename,  <span class="hljs-comment">// 文件路径</span><br>        MaxSize:    maxsize,   <span class="hljs-comment">// 单个日志文件的最大大小（单位为MB）</span><br>        MaxAge:     maxAge,    <span class="hljs-comment">// 保留旧文件的最大天数</span><br>        MaxBackups: maxBackup, <span class="hljs-comment">// 保留旧文件的最大个数</span><br>        Compress:   <span class="hljs-literal">false</span>,     <span class="hljs-comment">// 是否压缩/归档旧文件</span><br>    &#125;<br><br>    core := zapcore.NewCore(<br>        zapcore.NewJSONEncoder(zap.NewDevelopmentEncoderConfig()),<br>        zapcore.AddSync(lumberJackLogger),<br>        zapcore.DebugLevel,<br>    )<br><br>    logger := zap.New(core)<br>&#125;<br></code></pre></td></tr></table></figure>
+
                 
               </div>
             
