@@ -19,15 +19,15 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 项目地址：https:&#x2F;&#x2F;github.com&#x2F;uber-go&#x2F;zap 快速使用1go get -u go.uber.org&#x2F;zap  Z">
+    <meta name="description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃 项目地址：https:&#x2F;&#x2F;github.com&#x2F;uber-go&#x2F;zap 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用 Zap 实现高性能日志记录">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/10/24/zap/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃 项目地址：https:&#x2F;&#x2F;github.com&#x2F;uber-go&#x2F;zap 快速使用1go get -u go.uber.org&#x2F;zap  Z">
+<meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃 项目地址：https:&#x2F;&#x2F;github.com&#x2F;uber-go&#x2F;zap 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T14:27:17.000Z">
-<meta property="article:modified_time" content="2024-10-26T06:07:51.685Z">
+<meta property="article:modified_time" content="2024-10-26T06:09:23.071Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="zap">
 <meta property="article:tag" content="lumberjack">
@@ -293,7 +293,7 @@
               <div class="markdown-body">
                 
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>Zap</strong> 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。</p>
-<p>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日搜索日志切割相关实现的时候顺带回顾了一下 Zap 的用法，于是决定水一篇博客（逃</p>
+<p>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃</p>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/uber-go/zap">https://github.com/uber-go/zap</a></p>
 <h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u go.uber.org/zap<br></code></pre></td></tr></table></figure>
 
@@ -353,7 +353,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Sugared Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：若没有设置全局 Logger，则调用 <code>zap.L()</code> 和 <code>zap.S()</code> 并不会有日志输出。</p>
-<h2 id="使用-lumberjack-实现日志滚动记录"><a href="#使用-lumberjack-实现日志滚动记录" class="headerlink" title="使用 lumberjack 实现日志滚动记录"></a>使用 lumberjack 实现日志滚动记录</h2><p><strong>lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
+<h2 id="使用-lumberjack-实现日志滚动"><a href="#使用-lumberjack-实现日志滚动" class="headerlink" title="使用 lumberjack 实现日志滚动"></a>使用 lumberjack 实现日志滚动</h2><p><strong>lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u github.com/natefinch/lumberjack<br></code></pre></td></tr></table></figure>
 
 <p>lumberjack 提供了一个滚动记录器 logger，它实现了 <code>io.Writer</code> 和 <code>io.Closer</code> 接口，我们可以使用 <code>zapcore.AddSync</code> 来将其与 Zap 结合使用。</p>
