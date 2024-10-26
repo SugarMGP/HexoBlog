@@ -9,7 +9,7 @@
     <atom:link href="https://blog.sugarmgp.icu/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sat, 26 Oct 2024 06:09:23 GMT</pubDate>
+    <pubDate>Sat, 26 Oct 2024 06:11:07 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -29,13 +29,13 @@
       
       
       
-      <category domain="https://blog.sugarmgp.icu/tags/zap/">zap</category>
-      
       <category domain="https://blog.sugarmgp.icu/tags/lumberjack/">lumberjack</category>
       
       <category domain="https://blog.sugarmgp.icu/tags/%E6%97%A5%E5%BF%97/">日志</category>
       
-      <category domain="https://blog.sugarmgp.icu/tags/golang/">golang</category>
+      <category domain="https://blog.sugarmgp.icu/tags/Zap/">Zap</category>
+      
+      <category domain="https://blog.sugarmgp.icu/tags/Golang/">Golang</category>
       
       
       <comments>https://blog.sugarmgp.icu/2024/10/24/zap/#disqus_thread</comments>
