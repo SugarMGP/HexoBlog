@@ -27,9 +27,8 @@
 <meta property="og:description" content="前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃 项目地址：https:&#x2F;&#x2F;github.com&#x2F;uber-go&#x2F;zap 快速使用1go get -u go.uber.org&#x2F;zap  Zap 库">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-24T14:27:17.000Z">
-<meta property="article:modified_time" content="2024-10-26T09:55:45.974Z">
+<meta property="article:modified_time" content="2024-10-28T13:24:43.953Z">
 <meta property="article:author" content="SugarMGP">
-<meta property="article:tag" content="lumberjack">
 <meta property="article:tag" content="日志">
 <meta property="article:tag" content="Zap">
 <meta property="article:tag" content="Golang">
@@ -328,7 +327,7 @@
 </li>
 </ul>
 <p>举例如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// Sugared Logger</span><br>    sugar := zap.NewExample().Sugar()<br>    sugar.Infof(<span class="hljs-string">&quot;hello! name:%s,age:%d&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>, <span class="hljs-number">20</span>) <span class="hljs-comment">// printf 风格</span><br>    <span class="hljs-comment">// Logger</span><br>    logger := zap.NewExample()<br>    logger.Info(<span class="hljs-string">&quot;hello!&quot;</span>, zap.String(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>), zap.Int(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">20</span>)) <span class="hljs-comment">// 结构化</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>    <span class="hljs-comment">// Sugared Logger</span><br>    sugar := zap.NewExample().Sugar()<br>    sugar.Infof(<span class="hljs-string">&quot;hello! name:%s,age:%d&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>, <span class="hljs-number">20</span>) <span class="hljs-comment">// printf 风格</span><br><br>    <span class="hljs-comment">// Logger</span><br>    logger := zap.NewExample()<br>    logger.Info(<span class="hljs-string">&quot;hello!&quot;</span>, zap.String(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>), zap.Int(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">20</span>)) <span class="hljs-comment">// 结构化</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>输出结果：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-comment">// output</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello! name:xiaomin,age:20&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello!&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;xiaomin&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">20</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
@@ -380,7 +379,7 @@
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Sugared Logger&quot;</span><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
 
 <p>注意：若没有设置全局 Logger，则调用 <code>zap.L()</code> 和 <code>zap.S()</code> 并不会有日志输出。</p>
-<h2 id="使用-lumberjack-实现日志滚动"><a href="#使用-lumberjack-实现日志滚动" class="headerlink" title="使用 lumberjack 实现日志滚动"></a>使用 lumberjack 实现日志滚动</h2><p><strong>lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
+<h2 id="实现日志滚动"><a href="#实现日志滚动" class="headerlink" title="实现日志滚动"></a>实现日志滚动</h2><p><strong>lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">go get -u github.com/natefinch/lumberjack<br></code></pre></td></tr></table></figure>
 
 <p>lumberjack 提供了一个滚动记录器 logger，它实现了 <code>io.Writer</code> 和 <code>io.Closer</code> 接口，我们可以使用 <code>zapcore.AddSync</code> 来将其与 Zap 结合使用。</p>
@@ -398,8 +397,6 @@
   
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/lumberjack/" class="print-no-link">#lumberjack</a>
       
         <a href="/tags/%E6%97%A5%E5%BF%97/" class="print-no-link">#日志</a>
       
