@@ -27,7 +27,7 @@
 <meta property="og:description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： 12&#x27;\043&#x27; -&gt; 八进制为43的字符">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-07T12:52:17.000Z">
-<meta property="article:modified_time" content="2024-11-08T09:47:39.887Z">
+<meta property="article:modified_time" content="2024-11-12T11:15:38.483Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="笔记">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          669 字
+          704 字
         
       </span>
     
@@ -376,22 +376,26 @@
 <p><strong>‘A’</strong> (65) - <strong>‘Z’</strong> (90)</p>
 <p><strong>‘a’</strong> (97) - <strong>‘z’</strong> (122)</p>
 <p>完整码表请参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/ascii.html">ASCII 表</a></p>
-<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="getchar-函数"><a href="#getchar-函数" class="headerlink" title="getchar() 函数"></a>getchar() 函数</h3><p><code>getchar()</code> 用于从 <code>stdin</code> 中读取下一个可用的字符，并将其<strong>作为整数</strong>返回。</p>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="getchar-函数"><a href="#getchar-函数" class="headerlink" title="getchar() 函数"></a>getchar() 函数</h3><p><code>getchar()</code> 用于读取下一个可用的字符，并将其<strong>作为整数</strong>返回。</p>
 <p>如果读到文件结束或者发生读取错误，则返回 <strong>EOF</strong> (-1).</p>
 <p>常用方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> c;<br><span class="hljs-keyword">while</span> ((c = <span class="hljs-built_in">getchar</span>()) != EOF) &#123;<br>    <span class="hljs-comment">// 一些操作</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="gets-函数"><a href="#gets-函数" class="headerlink" title="gets() 函数"></a>gets() 函数</h3><p><code>gets()</code> 用于从 <code>stdin</code> 中读取一行字符串，并将读取的字符存储到指定的字符数组中。</p>
+<h3 id="gets-函数"><a href="#gets-函数" class="headerlink" title="gets() 函数"></a>gets() 函数</h3><p><code>gets()</code> 用于读取一行字符串，并将读取的字符存储到指定的字符数组中。</p>
 <p>换行符 <code>\n</code> 不会被存储到数组中，但在读取过程中会被消耗掉。读取完成后，会在数组末尾添加一个空字符 <code>\0</code> 以终止字符串。</p>
 <p>如果遇到文件结束符或读取错误，返回 <strong>NULL</strong>.</p>
 <p>常用方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[<span class="hljs-number">100</span>];<br><span class="hljs-keyword">while</span> (<span class="hljs-built_in">gets</span>(str) != <span class="hljs-literal">NULL</span>) &#123;<br>    <span class="hljs-comment">// 一些操作</span><br>&#125;<br></code></pre></td></tr></table></figure>
 
-<h3 id="cin-语句"><a href="#cin-语句" class="headerlink" title="cin 语句"></a>cin 语句</h3><p><code>cin</code> 语句用于从 <code>stdin</code> 中读取输入，并将其转换为指定类型的值。</p>
+<h3 id="cin-语句"><a href="#cin-语句" class="headerlink" title="cin 语句"></a>cin 语句</h3><p><code>cin</code> 语句用于读取输入，并将其转换为指定类型的值。</p>
 <p>若缓冲区中第一个字符是分隔符，<code>cin</code> 会将其忽略并清除，继续读取下一个字符，</p>
 <p>但是如果读取成功，字符后面的分隔符是残留在缓冲区的，<code>cin</code> 不做处理。</p>
 <p>常用方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> x;<br><span class="hljs-keyword">while</span> (cin &gt;&gt; x) &#123;<br>    <span class="hljs-comment">// 一些操作</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="cin-getline-函数"><a href="#cin-getline-函数" class="headerlink" title="cin.getline() 函数"></a>cin.getline() 函数</h3><p>类似于<code>gets()</code>.</p>
+<p>常用方法：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[<span class="hljs-number">100</span>];<br>cin.<span class="hljs-built_in">getline</span>(str, <span class="hljs-number">100</span>); <span class="hljs-comment">// 默认以&#x27;\0&#x27;为截止符</span><br>cin.<span class="hljs-built_in">getline</span>(str, <span class="hljs-number">100</span>, <span class="hljs-string">&#x27;a&#x27;</span>); <span class="hljs-comment">// 以&#x27;a&#x27;为截止符</span><br></code></pre></td></tr></table></figure>
 
 <h3 id="cout-常用控制符"><a href="#cout-常用控制符" class="headerlink" title="cout 常用控制符"></a>cout 常用控制符</h3><table>
 <thead>
