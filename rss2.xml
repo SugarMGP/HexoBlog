@@ -9,11 +9,11 @@
     <atom:link href="https://blog.sugarmgp.icu/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Wed, 13 Nov 2024 11:51:31 GMT</pubDate>
+    <pubDate>Wed, 13 Nov 2024 11:58:46 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>C++ 盲点笔记（二）</title>
+      <title>C++ 盲点笔记（二）之 C 字符串</title>
       <link>https://blog.sugarmgp.icu/2024/11/12/cpp-note-ep2/</link>
       <guid>https://blog.sugarmgp.icu/2024/11/12/cpp-note-ep2/</guid>
       <pubDate>Tue, 12 Nov 2024 11:16:29 GMT</pubDate>
