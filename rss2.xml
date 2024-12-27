@@ -9,7 +9,7 @@
     <atom:link href="https://blog.sugarmgp.icu/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Fri, 27 Dec 2024 10:54:26 GMT</pubDate>
+    <pubDate>Fri, 27 Dec 2024 10:55:59 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
@@ -30,11 +30,15 @@
       
       
       
+      <category domain="https://blog.sugarmgp.icu/tags/C/">C++</category>
+      
       <category domain="https://blog.sugarmgp.icu/tags/CTF/">CTF</category>
       
       <category domain="https://blog.sugarmgp.icu/tags/%E6%AF%94%E8%B5%9B/">比赛</category>
       
       <category domain="https://blog.sugarmgp.icu/tags/%E9%A2%98%E8%A7%A3/">题解</category>
+      
+      <category domain="https://blog.sugarmgp.icu/tags/Python/">Python</category>
       
       
       <comments>https://blog.sugarmgp.icu/2024/12/22/ctf-2024-review/#disqus_thread</comments>
