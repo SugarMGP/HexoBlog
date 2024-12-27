@@ -19,15 +19,15 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="前言这次赛题感觉整体难度不高，不会或者不了解的地方询问 ChatGPT 很快就能学会，答出大部分题应该是足够了。 本来想截点图放上来的，但是太多了，有空再补。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 12345678int main() &#x2F;&#x2F; 简化的 main() 函数&#123;  init(">
+    <meta name="description" content="前言这次赛题感觉整体难度不高，不会或者不了解的地方上网搜搜很快就能学会，答出大部分题应该是足够了。 本文中使用的代码均为 ChatGPT 生成。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 12345678int main() &#x2F;&#x2F; 简化的 main() 函数&#123;  init();  put">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浙工大第五届 CTF 迎新赛回顾">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/12/22/ctf-2024-review/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="前言这次赛题感觉整体难度不高，不会或者不了解的地方询问 ChatGPT 很快就能学会，答出大部分题应该是足够了。 本来想截点图放上来的，但是太多了，有空再补。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 12345678int main() &#x2F;&#x2F; 简化的 main() 函数&#123;  init(">
+<meta property="og:description" content="前言这次赛题感觉整体难度不高，不会或者不了解的地方上网搜搜很快就能学会，答出大部分题应该是足够了。 本文中使用的代码均为 ChatGPT 生成。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 12345678int main() &#x2F;&#x2F; 简化的 main() 函数&#123;  init();  put">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-12-22T15:01:45.000Z">
-<meta property="article:modified_time" content="2024-12-26T15:45:12.176Z">
+<meta property="article:modified_time" content="2024-12-27T10:54:26.990Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="CTF">
 <meta property="article:tag" content="比赛">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.9k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          15 分钟
+          16 分钟
         
       </span>
     
@@ -313,8 +313,8 @@
             
               <div class="markdown-body">
                 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次赛题感觉整体难度不高，不会或者不了解的地方询问 ChatGPT 很快就能学会，答出大部分题应该是足够了。</p>
-<p>本来想截点图放上来的，但是太多了，有空再补。</p>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>这次赛题感觉整体难度不高，不会或者不了解的地方上网搜搜很快就能学会，答出大部分题应该是足够了。</p>
+<p>本文中使用的代码均为 ChatGPT 生成。</p>
 <h2 id="PWN"><a href="#PWN" class="headerlink" title="PWN"></a>PWN</h2><h3 id="welcome-pwn"><a href="#welcome-pwn" class="headerlink" title="welcome_pwn"></a>welcome_pwn</h3><p>题面：”你听说过a[-1]吗”</p>
 <p>下载附件后使用 IDA 进行反编译，发现 <code>main</code> 函数中有一个 10 次的循环。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span> <span class="hljs-comment">// 简化的 main() 函数</span><br>&#123;<br>  init();<br>  <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;let us play a game!&quot;</span>);<br>  <span class="hljs-keyword">for</span> ( <span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">9</span>; ++i )<br>    game();<br>  <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -371,7 +371,9 @@
 <h3 id="你使用过StegSolve吗？"><a href="#你使用过StegSolve吗？" class="headerlink" title="你使用过StegSolve吗？"></a>你使用过StegSolve吗？</h3><p>使用 StegSolve 打开图片，打开 Data Extract 窗口，</p>
 <p>勾选 <code>R0 B0 G0</code> 三个通道，<code>Bit Order</code> 选择 <code>LSB First</code>，</p>
 <p>提取数据，发现数据头有 <code>PNG</code> 字样，保存为 png 文件，可以发现是张二维码，解析即可得 flag.</p>
-<h3 id="图片怎么打不开"><a href="#图片怎么打不开" class="headerlink" title="图片怎么打不开"></a>图片怎么打不开</h3><p>用十六进制编辑器打开，发现文件尾有 <code>GNP</code> 字样，编写脚本读取二进制数据并反转输出，打开图片即可得 flag.</p>
+<h3 id="图片怎么打不开"><a href="#图片怎么打不开" class="headerlink" title="图片怎么打不开"></a>图片怎么打不开</h3><p>用十六进制编辑器打开，发现文件尾有 <code>GNP</code> 字样，编写程序读取二进制数据并反转输出，打开图片即可得 flag.</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;fstream&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;vector&gt;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;algorithm&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;<br>    string inputFilename = <span class="hljs-string">&quot;1.png&quot;</span>;<br>    string outputFilename = <span class="hljs-string">&quot;2.png&quot;</span>;<br><br>    <span class="hljs-comment">// 打开输入文件</span><br>    <span class="hljs-function">ifstream <span class="hljs-title">inputFile</span><span class="hljs-params">(inputFilename, ios::binary)</span></span>;<br>    <span class="hljs-keyword">if</span> (!inputFile) &#123;<br>        cerr &lt;&lt; <span class="hljs-string">&quot;Error: Could not open input file &quot;</span> &lt;&lt; inputFilename &lt;&lt; endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 读取二进制数据到缓冲区</span><br>    <span class="hljs-function">vector&lt;<span class="hljs-type">char</span>&gt; <span class="hljs-title">buffer</span><span class="hljs-params">((istreambuf_iterator&lt;<span class="hljs-type">char</span>&gt;(inputFile)),</span></span><br><span class="hljs-params"><span class="hljs-function">                        istreambuf_iterator&lt;<span class="hljs-type">char</span>&gt;())</span></span>;<br>    inputFile.<span class="hljs-built_in">close</span>();<br><br>    <span class="hljs-comment">// 反转数据</span><br>    <span class="hljs-built_in">reverse</span>(buffer.<span class="hljs-built_in">begin</span>(), buffer.<span class="hljs-built_in">end</span>());<br><br>    <span class="hljs-comment">// 打开输出文件</span><br>    <span class="hljs-function">ofstream <span class="hljs-title">outputFile</span><span class="hljs-params">(outputFilename, ios::binary)</span></span>;<br>    <span class="hljs-keyword">if</span> (!outputFile) &#123;<br>        cerr &lt;&lt; <span class="hljs-string">&quot;Error: Could not open output file &quot;</span> &lt;&lt; outputFilename &lt;&lt; endl;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-comment">// 写入反转后的数据到输出文件</span><br>    outputFile.<span class="hljs-built_in">write</span>(buffer.<span class="hljs-built_in">data</span>(), buffer.<span class="hljs-built_in">size</span>());<br>    outputFile.<span class="hljs-built_in">close</span>();<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <h3 id="社工题"><a href="#社工题" class="headerlink" title="社工题"></a>社工题</h3><p>将酒店图片左右翻转，在镜子反光中看到 <code>Transcendence Resort</code> 字样，百度搜索即可得到答案 <code>青城山心越酒店</code>。</p>
 <h3 id="明文攻击"><a href="#明文攻击" class="headerlink" title="明文攻击"></a>明文攻击</h3><p>这题真有点绕，硬控了我两小时。</p>
 <p>下载附件得到 <code>._none.zip</code> 和 <code>none.zip</code> 两个文件，其中 <code>._none.zip</code> 没什么用。</p>
