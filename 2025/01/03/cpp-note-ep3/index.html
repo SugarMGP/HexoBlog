@@ -27,7 +27,7 @@
 <meta property="og:description" content="指针基本使用指针是用于存储变量地址的特殊变量。通过指针，可以间接访问或修改变量的值。 123int num &#x3D; 10;int* p &#x3D; &amp;num;*p &#x3D; 20;  在上述代码中，num 的地址被存入指针 p 中，并通过 *p 进行解引用，间接给 num 赋值。 指针与数组数组名在大多数情况下会被解释为指向其第一个元素的指针。由于数组元素在内存中是连续的，因此可以通过指针遍历数组。 123">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-03T14:17:08.000Z">
-<meta property="article:modified_time" content="2025-01-10T14:41:29.582Z">
+<meta property="article:modified_time" content="2025-03-01T04:39:55.706Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="笔记">
@@ -355,7 +355,7 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">int</span> rows, cols;<br>cin &gt;&gt; rows &gt;&gt; cols;<br><br><span class="hljs-comment">// 动态分配一个连续的二维数组</span><br><span class="hljs-built_in">int</span> (*arr)[cols] = <span class="hljs-keyword">new</span> <span class="hljs-type">int</span>[rows][cols]; <span class="hljs-comment">// 指向包含 cols 个整数的数组</span><br><br><span class="hljs-comment">// 释放内存</span><br><span class="hljs-keyword">delete</span>[] arr;<br></code></pre></td></tr></table></figure>
 
 <h3 id="常量指针与指针常量"><a href="#常量指针与指针常量" class="headerlink" title="常量指针与指针常量"></a>常量指针与指针常量</h3><ul>
-<li><p>常量指针 <code>const int* p</code>：指针指向的值不可修改，但指针本身可以指向其他地址。</p>
+<li><p>常量指针 <code>const int* p</code> 或 <code>int const *p</code>：指针指向的值不可修改，但指针本身可以指向其他地址。</p>
 </li>
 <li><p>指针常量 <code>int* const p</code>：指针本身不可修改，但指向的值可以修改。</p>
 </li>
