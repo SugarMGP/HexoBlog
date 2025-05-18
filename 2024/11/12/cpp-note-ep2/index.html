@@ -19,12 +19,12 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 1234567&#x2F;&#x2F; 以下三种写法等价char s1[6] &#x3D; &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&amp;#x">
+    <meta name="description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 盲点笔记（二）之 C 字符串">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/11/12/cpp-note-ep2/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 1234567&#x2F;&#x2F; 以下三种写法等价char s1[6] &#x3D; &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&amp;#x">
+<meta property="og:description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-12T11:16:29.000Z">
 <meta property="article:modified_time" content="2025-01-10T03:44:13.682Z">
@@ -75,7 +75,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.sugarmgp.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://umami.sugarmgp.icu/script.js","website_id":"083fe852-42ba-4bf6-9ed1-c49b2b37f4e1","domains":null,"start_time":null,"token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.sugarmgp.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://umami.sugarmgp.icu/script.js","website_id":"083fe852-42ba-4bf6-9ed1-c49b2b37f4e1","domains":null,"start_time":null,"token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -317,57 +317,124 @@
                 <h2 id="C-字符串"><a href="#C-字符串" class="headerlink" title="C 字符串"></a>C 字符串</h2><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>C 语言没有单独的字符串类型，字符串被当作字符数组，即<code>char[]</code>.</p>
 <p>字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。</p>
 <p>所有字符串都以<code>\0</code>结束。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 以下三种写法等价</span><br><span class="hljs-type">char</span> s1[<span class="hljs-number">6</span>] = &#123;<span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;\0&#x27;</span>&#125;;<br><span class="hljs-type">char</span> s2[<span class="hljs-number">6</span>] = <span class="hljs-string">&quot;Hello&quot;</span>;<br><span class="hljs-type">char</span> s3[] = <span class="hljs-string">&quot;Hello&quot;</span>;<br><br><span class="hljs-comment">// 用指针指向字符数组常量</span><br><span class="hljs-type">char</span>* s4 = <span class="hljs-string">&quot;Hello&quot;</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 以下三种写法等价</span>
+<span class="hljs-type">char</span> s1[<span class="hljs-number">6</span>] = &#123;<span class="hljs-string">&#x27;H&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;l&#x27;</span>, <span class="hljs-string">&#x27;o&#x27;</span>, <span class="hljs-string">&#x27;\0&#x27;</span>&#125;;
+<span class="hljs-type">char</span> s2[<span class="hljs-number">6</span>] = <span class="hljs-string">&quot;Hello&quot;</span>;
+<span class="hljs-type">char</span> s3[] = <span class="hljs-string">&quot;Hello&quot;</span>;
+
+<span class="hljs-comment">// 用指针指向字符数组常量</span>
+<span class="hljs-type">char</span>* s4 = <span class="hljs-string">&quot;Hello&quot;</span>;</code></pre></div>
 
 <p>若字符数组长度大于字符串长度，则会用<code>\0</code>填充剩余的空间。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// 从 s[6] 到 s[9] 均为 &#x27;\0&#x27;</span><br><span class="hljs-type">char</span> s[<span class="hljs-number">10</span>] = <span class="hljs-string">&quot;Hello&quot;</span>; <br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// 从 s[6] 到 s[9] 均为 &#x27;\0&#x27;</span>
+<span class="hljs-type">char</span> s[<span class="hljs-number">10</span>] = <span class="hljs-string">&quot;Hello&quot;</span>;</code></pre></div>
 
 <p>C 语言允许合并多个字符串字面量，如果这些字符串之间只有空格或换行，C 语言会将它们自动合并。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> greeting[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;Hello, &quot;</span>   <span class="hljs-string">&quot;how are you &quot;</span><br>    <span class="hljs-string">&quot;today!&quot;</span>;<br><span class="hljs-comment">// 等同于</span><br><span class="hljs-type">char</span> greeting[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;Hello, how are you today!&quot;</span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> greeting[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;Hello, &quot;</span>   <span class="hljs-string">&quot;how are you &quot;</span>
+    <span class="hljs-string">&quot;today!&quot;</span>;
+<span class="hljs-comment">// 等同于</span>
+<span class="hljs-type">char</span> greeting[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;Hello, how are you today!&quot;</span>;</code></pre></div>
 
 <p>对于已经定义的字符数组，我们不能直接使用赋值运算符进行整体赋值，而是必须使用 C 语言提供的<code>strcpy()</code>函数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[<span class="hljs-number">10</span>];<br>str = <span class="hljs-string">&quot;Hello&quot;</span>;  <span class="hljs-comment">// 错误：数组名是常量指针，不能作为赋值操作的左值</span><br><span class="hljs-built_in">strcpy</span>(str, <span class="hljs-string">&quot;Hello&quot;</span>);  <span class="hljs-comment">// 正确</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[<span class="hljs-number">10</span>];
+str = <span class="hljs-string">&quot;Hello&quot;</span>;  <span class="hljs-comment">// 错误：数组名是常量指针，不能作为赋值操作的左值</span>
+<span class="hljs-built_in">strcpy</span>(str, <span class="hljs-string">&quot;Hello&quot;</span>);  <span class="hljs-comment">// 正确</span></code></pre></div>
 
 <p>若使用指针变量，则可以直接指向字符串常量或字符数组：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span>* p;<br>p = <span class="hljs-string">&quot;World&quot;</span>; <span class="hljs-comment">// 指向字符串常量</span><br>*(p<span class="hljs-number">+3</span>) = <span class="hljs-string">&#x27;z&#x27;</span>;  <span class="hljs-comment">// 错误：常量不能修改</span><br><br><span class="hljs-type">char</span> str[] = <span class="hljs-string">&quot;Hello, world!&quot;</span>;<br>p = str; <span class="hljs-comment">// 指向现有的字符数组</span><br>*(p<span class="hljs-number">+3</span>) = <span class="hljs-string">&#x27;z&#x27;</span>; <span class="hljs-comment">// 合法，等价于 str[3] = &#x27;z&#x27;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span>* p;
+p = <span class="hljs-string">&quot;World&quot;</span>; <span class="hljs-comment">// 指向字符串常量</span>
+*(p<span class="hljs-number">+3</span>) = <span class="hljs-string">&#x27;z&#x27;</span>;  <span class="hljs-comment">// 错误：常量不能修改</span>
+
+<span class="hljs-type">char</span> str[] = <span class="hljs-string">&quot;Hello, world!&quot;</span>;
+p = str; <span class="hljs-comment">// 指向现有的字符数组</span>
+*(p<span class="hljs-number">+3</span>) = <span class="hljs-string">&#x27;z&#x27;</span>; <span class="hljs-comment">// 合法，等价于 str[3] = &#x27;z&#x27;</span></code></pre></div>
 
 <h3 id="strlen-函数"><a href="#strlen-函数" class="headerlink" title="strlen() 函数"></a>strlen() 函数</h3><p><code>strlen()</code>函数返回字符串的字节长度，不包括末尾的空字符<code>\0</code>.</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span><br><span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">strlen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* s)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span>
+<span class="hljs-function"><span class="hljs-type">size_t</span> <span class="hljs-title">strlen</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* s)</span></span>;</code></pre></div>
 
 <p>它的参数是字符串变量，返回的是<code>size_t</code>类型的无符号整数，除非是极长的字符串，一般情况下当作<code>int</code>处理即可。</p>
 <p>注意，字符串长度<code>strlen()</code>与字符数组长度<code>sizeof()</code>是两个不同的概念。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;hello\0world12&quot;</span>;<br>cout &lt;&lt; <span class="hljs-built_in">strlen</span>(s) &lt;&lt; endl; <span class="hljs-comment">// 5</span><br>cout &lt;&lt; <span class="hljs-built_in">strlen</span>(s<span class="hljs-number">+6</span>) &lt;&lt; endl; <span class="hljs-comment">// 7</span><br>cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(s) &lt;&lt; endl; <span class="hljs-comment">// 50</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">50</span>] = <span class="hljs-string">&quot;hello\0world12&quot;</span>;
+cout &lt;&lt; <span class="hljs-built_in">strlen</span>(s) &lt;&lt; endl; <span class="hljs-comment">// 5</span>
+cout &lt;&lt; <span class="hljs-built_in">strlen</span>(s<span class="hljs-number">+6</span>) &lt;&lt; endl; <span class="hljs-comment">// 7</span>
+cout &lt;&lt; <span class="hljs-built_in">sizeof</span>(s) &lt;&lt; endl; <span class="hljs-comment">// 50</span></code></pre></div>
 
 <h3 id="strcpy-函数"><a href="#strcpy-函数" class="headerlink" title="strcpy() 函数"></a>strcpy() 函数</h3><p><code>strcpy()</code>函数用于将一个字符串复制到一个字符数组中。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span><br><span class="hljs-function"><span class="hljs-type">char</span>* <span class="hljs-title">strcpy</span><span class="hljs-params">(<span class="hljs-type">char</span> dest[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> src[])</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span>
+<span class="hljs-function"><span class="hljs-type">char</span>* <span class="hljs-title">strcpy</span><span class="hljs-params">(<span class="hljs-type">char</span> dest[], <span class="hljs-type">const</span> <span class="hljs-type">char</span> src[])</span></span>;</code></pre></div>
 
 <p><code>strcpy()</code>的返回值是一个字符串指针，指向第一个参数，故可以连续为多个字符数组赋值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> str1[<span class="hljs-number">20</span>] = <span class="hljs-string">&quot;Hello, I&#x27;m C0dd1y&quot;</span>;<br><span class="hljs-type">char</span> str2[<span class="hljs-number">20</span>] = <span class="hljs-string">&quot;C0dd1y&quot;</span>;<br><br><span class="hljs-built_in">strcpy</span>(str2, <span class="hljs-built_in">strcpy</span>(str1 + <span class="hljs-number">11</span>, <span class="hljs-string">&quot;SugarMGP&quot;</span>));<br>cout &lt;&lt; str1 &lt;&lt; endl; <span class="hljs-comment">// Hello, I&#x27;m SugarMGP</span><br>cout &lt;&lt; str2 &lt;&lt; endl; <span class="hljs-comment">// SugarMGP</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> str1[<span class="hljs-number">20</span>] = <span class="hljs-string">&quot;Hello, I&#x27;m C0dd1y&quot;</span>;
+<span class="hljs-type">char</span> str2[<span class="hljs-number">20</span>] = <span class="hljs-string">&quot;C0dd1y&quot;</span>;
+
+<span class="hljs-built_in">strcpy</span>(str2, <span class="hljs-built_in">strcpy</span>(str1 + <span class="hljs-number">11</span>, <span class="hljs-string">&quot;SugarMGP&quot;</span>));
+cout &lt;&lt; str1 &lt;&lt; endl; <span class="hljs-comment">// Hello, I&#x27;m SugarMGP</span>
+cout &lt;&lt; str2 &lt;&lt; endl; <span class="hljs-comment">// SugarMGP</span></code></pre></div>
 
 <p>另外，不能使用<code>strcpy()</code>对没初始化的字符指针赋值。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span>* str; <span class="hljs-comment">// 未初始化，指向随机位置</span><br><span class="hljs-built_in">strcpy</span>(str, <span class="hljs-string">&quot;hello world&quot;</span>); <span class="hljs-comment">// 错误</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span>* str; <span class="hljs-comment">// 未初始化，指向随机位置</span>
+<span class="hljs-built_in">strcpy</span>(str, <span class="hljs-string">&quot;hello world&quot;</span>); <span class="hljs-comment">// 错误</span></code></pre></div>
 
 <p>程C老师给我们写的神金示例，好孩子千万不要这样写码哦：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;apple***\0s1234567&quot;</span>;<br><span class="hljs-type">char</span> s2[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;abc&quot;</span>;<br>cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***</span><br>cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span><br>	<br><span class="hljs-built_in">strcpy</span>(s,s2); <span class="hljs-comment">// abc\0e***\0s1234567</span><br>cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// abc</span><br>cout &lt;&lt; s<span class="hljs-number">+4</span> &lt;&lt; endl; <span class="hljs-comment">// e***</span><br>cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;apple***\0s1234567&quot;</span>;
+<span class="hljs-type">char</span> s2[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;abc&quot;</span>;
+cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***</span>
+cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span>
+	
+<span class="hljs-built_in">strcpy</span>(s,s2); <span class="hljs-comment">// abc\0e***\0s1234567</span>
+cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// abc</span>
+cout &lt;&lt; s<span class="hljs-number">+4</span> &lt;&lt; endl; <span class="hljs-comment">// e***</span>
+cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span></code></pre></div>
 
 <h3 id="strcat-函数"><a href="#strcat-函数" class="headerlink" title="strcat() 函数"></a>strcat() 函数</h3><p><code>strcat()</code>函数用于将一个字符串追加到另一个字符串的末尾。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span><br><span class="hljs-function"><span class="hljs-type">char</span>* <span class="hljs-title">strcat</span><span class="hljs-params">(<span class="hljs-type">char</span>* s1, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* s2)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span>
+<span class="hljs-function"><span class="hljs-type">char</span>* <span class="hljs-title">strcat</span><span class="hljs-params">(<span class="hljs-type">char</span>* s1, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* s2)</span></span>;</code></pre></div>
 
 <p><code>strcat()</code>的返回值是一个字符串指针，同样指向第一个参数。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> s1[<span class="hljs-number">12</span>] = <span class="hljs-string">&quot;hello&quot;</span>;<br><span class="hljs-type">char</span> s2[<span class="hljs-number">6</span>] = <span class="hljs-string">&quot;world&quot;</span>;<br><span class="hljs-built_in">strcat</span>(s1, <span class="hljs-built_in">strcat</span>(s2, <span class="hljs-string">&quot;, SugarMGP&quot;</span>));<br><span class="hljs-built_in">puts</span>(s1); <span class="hljs-comment">// &quot;helloworld, SugarMGP&quot;</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> s1[<span class="hljs-number">12</span>] = <span class="hljs-string">&quot;hello&quot;</span>;
+<span class="hljs-type">char</span> s2[<span class="hljs-number">6</span>] = <span class="hljs-string">&quot;world&quot;</span>;
+<span class="hljs-built_in">strcat</span>(s1, <span class="hljs-built_in">strcat</span>(s2, <span class="hljs-string">&quot;, SugarMGP&quot;</span>));
+<span class="hljs-built_in">puts</span>(s1); <span class="hljs-comment">// &quot;helloworld, SugarMGP&quot;</span></code></pre></div>
 
 <p>同样也举个神金示例：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;apple***\0s1234567&quot;</span>;<br><span class="hljs-type">char</span> s2[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;abc&quot;</span>;<br>cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***</span><br>cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span><br><br><span class="hljs-built_in">strcat</span>(s,s2); <span class="hljs-comment">// apple***abc\034567\0</span><br>cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***abc</span><br>cout &lt;&lt; s<span class="hljs-number">+12</span> &lt;&lt; endl; <span class="hljs-comment">// 34567</span><br><br><span class="hljs-built_in">strcat</span>(s<span class="hljs-number">+12</span>,s2); <span class="hljs-comment">// apple***abc\034567abc\0</span><br>cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***abc</span><br>cout &lt;&lt; s<span class="hljs-number">+12</span> &lt;&lt; endl; <span class="hljs-comment">// 34567abc</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> s[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;apple***\0s1234567&quot;</span>;
+<span class="hljs-type">char</span> s2[<span class="hljs-number">81</span>]=<span class="hljs-string">&quot;abc&quot;</span>;
+cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***</span>
+cout &lt;&lt; s<span class="hljs-number">+9</span> &lt;&lt; endl; <span class="hljs-comment">// s1234567</span>
+
+<span class="hljs-built_in">strcat</span>(s,s2); <span class="hljs-comment">// apple***abc\034567\0</span>
+cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***abc</span>
+cout &lt;&lt; s<span class="hljs-number">+12</span> &lt;&lt; endl; <span class="hljs-comment">// 34567</span>
+
+<span class="hljs-built_in">strcat</span>(s<span class="hljs-number">+12</span>,s2); <span class="hljs-comment">// apple***abc\034567abc\0</span>
+cout &lt;&lt; s &lt;&lt; endl; <span class="hljs-comment">// apple***abc</span>
+cout &lt;&lt; s<span class="hljs-number">+12</span> &lt;&lt; endl; <span class="hljs-comment">// 34567abc</span></code></pre></div>
 
 <h3 id="strcmp-函数"><a href="#strcmp-函数" class="headerlink" title="strcmp() 函数"></a>strcmp() 函数</h3><p><code>strcmp()</code>函数用于比较两个字符串的内容。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span><br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">strcmp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* s1, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* s2)</span></span>;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// string.h</span>
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">strcmp</span><span class="hljs-params">(<span class="hljs-type">const</span> <span class="hljs-type">char</span>* s1, <span class="hljs-type">const</span> <span class="hljs-type">char</span>* s2)</span></span>;</code></pre></div>
 
 <p>按照字典顺序，若<code>s1</code>小于<code>s2</code>，则返回负值；若<code>s1</code>大于<code>s2</code>，则返回正值；若<code>s1</code>等于<code>s2</code>，则返回零。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-comment">// s1 = Happy New Year</span><br><span class="hljs-comment">// s2 = Happy New Year</span><br><span class="hljs-comment">// s3 = Happy Holidays</span><br><span class="hljs-built_in">strcmp</span>(s1, s2) <span class="hljs-comment">// 0</span><br><span class="hljs-built_in">strcmp</span>(s1, s3) <span class="hljs-comment">// 正值 (&#x27;N&#x27;&gt;&#x27;H&#x27;)</span><br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// s1 = Happy New Year</span>
+<span class="hljs-comment">// s2 = Happy New Year</span>
+<span class="hljs-comment">// s3 = Happy Holidays</span>
+<span class="hljs-built_in">strcmp</span>(s1, s2) <span class="hljs-comment">// 0</span>
+<span class="hljs-built_in">strcmp</span>(s1, s3) <span class="hljs-comment">// 正值 (&#x27;N&#x27;&gt;&#x27;H&#x27;)</span></code></pre></div>
 
 <h3 id="strchr-和-strstr"><a href="#strchr-和-strstr" class="headerlink" title="strchr() 和 strstr()"></a>strchr() 和 strstr()</h3><p><code>strchr()</code>函数用于在字符串中查找某个字符，并返回该字符第一次出现的位置。</p>
 <p><code>strstr()</code>函数用于在字符串中查找另一个字符串的第一次出现的位置。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[] = <span class="hljs-string">&quot;Hello, world!&quot;</span>;<br><br><span class="hljs-type">char</span>* p = <span class="hljs-built_in">strchr</span>(str, <span class="hljs-string">&#x27;l&#x27;</span>);<br><span class="hljs-keyword">if</span> (p != <span class="hljs-literal">NULL</span>) &#123;<br>    cout &lt;&lt; p - str &lt;&lt; endl; <span class="hljs-comment">// 得到&#x27;l&#x27;第一次出现的下标为 2</span><br>&#125;<br><br><span class="hljs-type">char</span>* q = <span class="hljs-built_in">strstr</span>(str, <span class="hljs-string">&quot;world&quot;</span>);<br><span class="hljs-keyword">if</span> (q != <span class="hljs-literal">NULL</span>) &#123;<br>    cout &lt;&lt; q - str &lt;&lt; endl; <span class="hljs-comment">// 得到&#x27;world&#x27;第一次出现的下标为 7</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">char</span> str[] = <span class="hljs-string">&quot;Hello, world!&quot;</span>;
+
+<span class="hljs-type">char</span>* p = <span class="hljs-built_in">strchr</span>(str, <span class="hljs-string">&#x27;l&#x27;</span>);
+<span class="hljs-keyword">if</span> (p != <span class="hljs-literal">NULL</span>) &#123;
+    cout &lt;&lt; p - str &lt;&lt; endl; <span class="hljs-comment">// 得到&#x27;l&#x27;第一次出现的下标为 2</span>
+&#125;
+
+<span class="hljs-type">char</span>* q = <span class="hljs-built_in">strstr</span>(str, <span class="hljs-string">&quot;world&quot;</span>);
+<span class="hljs-keyword">if</span> (q != <span class="hljs-literal">NULL</span>) &#123;
+    cout &lt;&lt; q - str &lt;&lt; endl; <span class="hljs-comment">// 得到&#x27;world&#x27;第一次出现的下标为 7</span>
+&#125;</code></pre></div>
 
                 
               </div>
@@ -706,8 +773,6 @@
   });
 </script>
 
-
-  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
   <script>Fluid.plugins.codeWidget();</script>
 

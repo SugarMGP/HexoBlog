@@ -61,7 +61,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"blog.sugarmgp.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://umami.sugarmgp.icu/script.js","website_id":"083fe852-42ba-4bf6-9ed1-c49b2b37f4e1","domains":null,"start_time":null,"token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"blog.sugarmgp.icu","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":false,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://umami.sugarmgp.icu/script.js","website_id":"083fe852-42ba-4bf6-9ed1-c49b2b37f4e1","domains":null,"start_time":null,"token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -288,9 +288,9 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Golang/">#Golang</a>
-            
               <a href="/tags/WebSocket/">#WebSocket</a>
+            
+              <a href="/tags/Golang/">#Golang</a>
             
               <a href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">#后端开发</a>
             
@@ -314,7 +314,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2025/01/03/cpp-note-ep3/" target="_self">
         <div>
-          指针基本使用指针是用于存储变量地址的特殊变量。通过指针，可以间接访问或修改变量的值。 123int num = 10;int* p = &amp;num;*p = 20;  在上述代码中，num 的地址被存入指针 p 中，并通过 *p 进行解引用，间接给 num 赋值。 指针与数组数组名在大多数情况下会被解释为指向其第一个元素的指针。由于数组元素在内存中是连续的，因此可以通过指针遍历数组。 123
+          指针基本使用指针是用于存储变量地址的特殊变量。通过指针，可以间接访问或修改变量的值。 int num = 10; int* p = &amp;num; *p = 20;  在上述代码中，num 的地址被存入指针 p 中，并通过 *p 进行解引用，间接给 num 赋值。 指针与数组数组名在大多数情况下会被解释为指向其第一个元素的指针。由于数组元素在内存中是连续的，因此可以通过指针遍历数组。 int
         </div>
       </a>
 
@@ -358,7 +358,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/12/22/ctf-2024-review/" target="_self">
         <div>
-          前言这次赛题感觉整体难度不高，不会或者不了解的地方上网搜搜很快就能学会，答出大部分题应该是足够了。 本文中使用的代码均为 ChatGPT 生成。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 12345678int main() // 简化的 main() 函数&#123;  init();  put
+          前言这次赛题感觉整体难度不高，不会或者不了解的地方上网搜搜很快就能学会，答出大部分题应该是足够了。 本文中使用的代码均为 ChatGPT 生成。 PWNwelcome_pwn题面：”你听说过a[-1]吗” 下载附件后使用 IDA 进行反编译，发现 main 函数中有一个 10 次的循环。 int main() // 简化的 main() 函数 &#123;   init();   puts(&qu
         </div>
       </a>
 
@@ -406,7 +406,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/11/12/cpp-note-ep2/" target="_self">
         <div>
-          C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 1234567// 以下三种写法等价char s1[6] = &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x
+          C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 // 以下三种写法等价 char s1[6] = &#123;&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, &
         </div>
       </a>
 
@@ -452,7 +452,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/11/07/cpp-note-ep1/" target="_self">
         <div>
-          字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： 12&#x27;\043&#x27; -&gt; 八进制为43的字符
+          字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#x27;\043&#x27; -&gt; 八进制为43的字符 -
         </div>
       </a>
 
@@ -498,7 +498,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/10/24/zap/" target="_self">
         <div>
-          前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃 项目地址：https://github.com/uber-go/zap 快速使用1go get -u go.uber.org/zap  Zap 库
+          前言Zap 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。 试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃 项目地址：https://github.com/uber-go/zap 快速使用go get -u go.uber.org/zap  Zap 库的
         </div>
       </a>
 
@@ -516,13 +516,13 @@
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%97%A5%E5%BF%97/">#日志</a>
-            
-              <a href="/tags/Zap/">#Zap</a>
-            
               <a href="/tags/Golang/">#Golang</a>
             
               <a href="/tags/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91/">#后端开发</a>
+            
+              <a href="/tags/Zap/">#Zap</a>
+            
+              <a href="/tags/%E6%97%A5%E5%BF%97/">#日志</a>
             
           </div>
         
@@ -544,7 +544,7 @@
       
       <a class="index-excerpt index-excerpt__noimg" href="/2024/10/20/blog-setup/" target="_self">
         <div>
-          前言Hexo 是一个快速、简洁且高效的博客框架，可以通过 Markdown（或其他渲染引擎）解析文章并生成静态网页。 Vercel 是一家基于云的开发平台，提供免费的静态网站托管服务。 本文将介绍如何通过 Vercel 部署 Hexo 博客。 准备工作安装 Node.js 和 Git，修改 NPM 为淘宝镜像源（可选）. 12# 修改 NPM 为淘宝镜像源npm config set regist
+          前言Hexo 是一个快速、简洁且高效的博客框架，可以通过 Markdown（或其他渲染引擎）解析文章并生成静态网页。 Vercel 是一家基于云的开发平台，提供免费的静态网站托管服务。 本文将介绍如何通过 Vercel 部署 Hexo 博客。 准备工作安装 Node.js 和 Git，修改 NPM 为淘宝镜像源（可选）. # 修改 NPM 为淘宝镜像源 npm config set registr
         </div>
       </a>
 
