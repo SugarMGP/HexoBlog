@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          1.4k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          13 分钟
+          12 分钟
         
       </span>
     
@@ -317,7 +317,7 @@
                 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>Zap</strong> 是一款由 uber-go 开发的开源日志库，它支持多种日志级别和结构化，并对性能和内存分配做了极致的优化。</p>
 <p>试用期大作业的后端中我们使用了 Zap 来进行日志记录，今日探索日志滚动时顺带回顾了一下 Zap 的基本用法，于是决定水一篇博客（逃</p>
 <p>项目地址：<a target="_blank" rel="noopener" href="https://github.com/uber-go/zap">https://github.com/uber-go/zap</a></p>
-<h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><div class="code-wrapper"><pre><code class="hljs bash">go get -u go.uber.org/zap</code></pre></div>
+<h2 id="快速使用"><a href="#快速使用" class="headerlink" title="快速使用"></a>快速使用</h2><figure><div class="code-wrapper"><pre class="language-bash" data-language="bash"><code class="language-bash">go get <span class="token parameter variable">-u</span> go.uber.org/zap</code></pre></div></figure>
 
 <p>Zap 库的使用与其他的日志库非常相似，我们需要先创建一个日志记录器，然后调用相应的方法来记录不同级别的日志。</p>
 <p>Zap 提供了两种日志记录器：<code>Sugared Logger</code> 和 <code>Logger</code>.</p>
@@ -328,190 +328,190 @@
 </li>
 </ul>
 <p>举例如下：</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-    <span class="hljs-comment">// Sugared Logger</span>
-    sugar := zap.NewExample().Sugar()
-    sugar.Infof(<span class="hljs-string">&quot;hello! name:%s,age:%d&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>, <span class="hljs-number">20</span>) <span class="hljs-comment">// printf 风格</span>
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// Sugared Logger</span>
+    sugar <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Sugar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sugar<span class="token punctuation">.</span><span class="token function">Infof</span><span class="token punctuation">(</span><span class="token string">"hello! name:%s,age:%d"</span><span class="token punctuation">,</span> <span class="token string">"xiaomin"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span> <span class="token comment">// printf 风格</span>
 
-    <span class="hljs-comment">// Logger</span>
-    logger := zap.NewExample()
-    logger.Info(<span class="hljs-string">&quot;hello!&quot;</span>, zap.String(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>), zap.Int(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">20</span>)) <span class="hljs-comment">// 结构化</span>
-&#125;</code></pre></div>
+    <span class="token comment">// Logger</span>
+    logger <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">,</span> zap<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"xiaomin"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> zap<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 结构化</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>输出结果：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-comment">// output</span>
-<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello! name:xiaomin,age:20&quot;</span><span class="hljs-punctuation">&#125;</span>
-<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello!&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;name&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;xiaomin&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;age&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">20</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token comment">// output</span>
+<span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello! name:xiaomin,age:20"</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello!"</span><span class="token punctuation">,</span><span class="token property">"name"</span><span class="token operator">:</span><span class="token string">"xiaomin"</span><span class="token punctuation">,</span><span class="token property">"age"</span><span class="token operator">:</span><span class="token number">20</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>要创建一个 Logger，Zap 提供了三个默认配置：<code>Example</code>，<code>Development</code>，<code>Production</code>，分别对应测试环境、开发环境和生产环境。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-   <span class="hljs-comment">// Example</span>
-   logger := zap.NewExample()
-   logger.Info(<span class="hljs-string">&quot;Example&quot;</span>)
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+   <span class="token comment">// Example</span>
+   logger <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Example"</span><span class="token punctuation">)</span>
 
-   <span class="hljs-comment">// Development</span>
-   logger, _ = zap.NewDevelopment()
-   logger.Info(<span class="hljs-string">&quot;Development&quot;</span>)
+   <span class="token comment">// Development</span>
+   logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">=</span> zap<span class="token punctuation">.</span><span class="token function">NewDevelopment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Development"</span><span class="token punctuation">)</span>
 
-   <span class="hljs-comment">// Production</span>
-   logger, _ = zap.NewProduction()
-   logger.Info(<span class="hljs-string">&quot;Production&quot;</span>)
-&#125;</code></pre></div>
+   <span class="token comment">// Production</span>
+   logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">=</span> zap<span class="token punctuation">.</span><span class="token function">NewProduction</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+   logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Production"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>相应的输出如下：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-comment">// Example</span>
-<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Example&quot;</span><span class="hljs-punctuation">&#125;</span>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token comment">// Example</span>
+<span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"Example"</span><span class="token punctuation">&#125;</span>
 
-<span class="hljs-comment">// Development</span>
-<span class="hljs-number">2024</span><span class="hljs-number">-10</span><span class="hljs-number">-24</span>T22<span class="hljs-punctuation">:</span><span class="hljs-number">52</span><span class="hljs-punctuation">:</span><span class="hljs-number">16.544</span>+<span class="hljs-number">0800</span>    INFO    ConfessionWallServer/main.go<span class="hljs-punctuation">:</span><span class="hljs-number">14</span> Development
+<span class="token comment">// Development</span>
+<span class="token number">2024</span><span class="token number">-10</span>-24T22<span class="token operator">:</span><span class="token number">52</span><span class="token operator">:</span><span class="token number">16.544</span>+<span class="token number">0800</span>    INFO    ConfessionWallServer/main.go<span class="token operator">:</span><span class="token number">14</span> Development
 
-<span class="hljs-comment">// Production</span>
-<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;ts&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1729781536.5583117</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;caller&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ConfessionWallServer/main.go:18&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Production&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<span class="token comment">// Production</span>
+<span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"ts"</span><span class="token operator">:</span><span class="token number">1729781536.5583117</span><span class="token punctuation">,</span><span class="token property">"caller"</span><span class="token operator">:</span><span class="token string">"ConfessionWallServer/main.go:18"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"Production"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>可以看到，日志等级，日志输出格式，默认字段都有所差异。</p>
 <h2 id="定制-Logger"><a href="#定制-Logger" class="headerlink" title="定制 Logger"></a>定制 Logger</h2><p>Zap 提供了丰富的配置选项。</p>
 <h3 id="使用自定义配置"><a href="#使用自定义配置" class="headerlink" title="使用自定义配置"></a>使用自定义配置</h3><p>我们可以通过自己创建 Config 来配置 Logger 的行为。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-    <span class="hljs-comment">// 定制 Config</span>
-    config := zap.Config&#123;
-        Level:       zap.NewAtomicLevelAt(zap.InfoLevel), <span class="hljs-comment">// 最低日志等级</span>
-        Encoding:    <span class="hljs-string">&quot;json&quot;</span>, <span class="hljs-comment">// 日志输出格式</span>
-        EncoderConfig: zap.EncoderConfig&#123;
-            TimeKey:        <span class="hljs-string">&quot;time&quot;</span>, <span class="hljs-comment">// 时间字段名</span>
-            LevelKey:       <span class="hljs-string">&quot;level&quot;</span>, <span class="hljs-comment">// 日志等级字段名</span>
-            NameKey:        <span class="hljs-string">&quot;logger&quot;</span>, <span class="hljs-comment">// 日志名字段名</span>
-            CallerKey:      <span class="hljs-string">&quot;caller&quot;</span>, <span class="hljs-comment">// 调用者字段名</span>
-            MessageKey:     <span class="hljs-string">&quot;msg&quot;</span>, <span class="hljs-comment">// 消息字段名</span>
-            StacktraceKey:  <span class="hljs-string">&quot;stacktrace&quot;</span>, <span class="hljs-comment">// 堆栈字段名</span>
-            LineEnding:     zapcore.DefaultLineEnding,
-            EncodeLevel:    zapcore.LowercaseLevelEncoder,
-            EncodeTime:     zapcore.ISO8601TimeEncoder,
-            EncodeDuration: zapcore.SecondsDurationEncoder,
-            EncodeCaller:   zapcore.ShortCallerEncoder,
-        &#125;,
-        OutputPaths:      []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;stdout&quot;</span>&#125;, <span class="hljs-comment">// 日志输出路径</span>
-        ErrorOutputPaths: []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;stderr&quot;</span>&#125;, <span class="hljs-comment">// 错误日志输出路径</span>
-    &#125;
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 定制 Config</span>
+    config <span class="token operator">:=</span> zap<span class="token punctuation">.</span>Config<span class="token punctuation">&#123;</span>
+        Level<span class="token punctuation">:</span>       zap<span class="token punctuation">.</span><span class="token function">NewAtomicLevelAt</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span>InfoLevel<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// 最低日志等级</span>
+        Encoding<span class="token punctuation">:</span>    <span class="token string">"json"</span><span class="token punctuation">,</span> <span class="token comment">// 日志输出格式</span>
+        EncoderConfig<span class="token punctuation">:</span> zap<span class="token punctuation">.</span>EncoderConfig<span class="token punctuation">&#123;</span>
+            TimeKey<span class="token punctuation">:</span>        <span class="token string">"time"</span><span class="token punctuation">,</span> <span class="token comment">// 时间字段名</span>
+            LevelKey<span class="token punctuation">:</span>       <span class="token string">"level"</span><span class="token punctuation">,</span> <span class="token comment">// 日志等级字段名</span>
+            NameKey<span class="token punctuation">:</span>        <span class="token string">"logger"</span><span class="token punctuation">,</span> <span class="token comment">// 日志名字段名</span>
+            CallerKey<span class="token punctuation">:</span>      <span class="token string">"caller"</span><span class="token punctuation">,</span> <span class="token comment">// 调用者字段名</span>
+            MessageKey<span class="token punctuation">:</span>     <span class="token string">"msg"</span><span class="token punctuation">,</span> <span class="token comment">// 消息字段名</span>
+            StacktraceKey<span class="token punctuation">:</span>  <span class="token string">"stacktrace"</span><span class="token punctuation">,</span> <span class="token comment">// 堆栈字段名</span>
+            LineEnding<span class="token punctuation">:</span>     zapcore<span class="token punctuation">.</span>DefaultLineEnding<span class="token punctuation">,</span>
+            EncodeLevel<span class="token punctuation">:</span>    zapcore<span class="token punctuation">.</span>LowercaseLevelEncoder<span class="token punctuation">,</span>
+            EncodeTime<span class="token punctuation">:</span>     zapcore<span class="token punctuation">.</span>ISO8601TimeEncoder<span class="token punctuation">,</span>
+            EncodeDuration<span class="token punctuation">:</span> zapcore<span class="token punctuation">.</span>SecondsDurationEncoder<span class="token punctuation">,</span>
+            EncodeCaller<span class="token punctuation">:</span>   zapcore<span class="token punctuation">.</span>ShortCallerEncoder<span class="token punctuation">,</span>
+        <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        OutputPaths<span class="token punctuation">:</span>      <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span><span class="token string">"stdout"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 日志输出路径</span>
+        ErrorOutputPaths<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token builtin">string</span><span class="token punctuation">&#123;</span><span class="token string">"stderr"</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> <span class="token comment">// 错误日志输出路径</span>
+    <span class="token punctuation">&#125;</span>
 
-    <span class="hljs-comment">// 通过 Config 构建 Logger</span>
-    logger, _ := config.Build()
+    <span class="token comment">// 通过 Config 构建 Logger</span>
+    logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> config<span class="token punctuation">.</span><span class="token function">Build</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    <span class="hljs-comment">// 在程序结束时同步缓冲区</span>
-    <span class="hljs-keyword">defer</span> logger.Sync()
+    <span class="token comment">// 在程序结束时同步缓冲区</span>
+    <span class="token keyword">defer</span> logger<span class="token punctuation">.</span><span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-    <span class="hljs-comment">// 记录日志</span>
-    logger.Info(<span class="hljs-string">&quot;hello!&quot;</span>, zap.String(<span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;xiaomin&quot;</span>), zap.Int(<span class="hljs-string">&quot;age&quot;</span>, <span class="hljs-number">20</span>))
-&#125;</code></pre></div>
+    <span class="token comment">// 记录日志</span>
+    logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"hello!"</span><span class="token punctuation">,</span> zap<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"xiaomin"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> zap<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"age"</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h3 id="记录调用信息"><a href="#记录调用信息" class="headerlink" title="记录调用信息"></a>记录调用信息</h3><p>Zap 提供了 <code>AddCaller()</code> 方法，可以记录调用者的信息，包括文件名、函数名、行号。<br>前提是必须设置 <code>CallerKey</code> 字段，因此 NewExample() 不能输出调用者信息。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  logger, _ := zap.NewProduction(zap.AddCaller())
-  <span class="hljs-keyword">defer</span> logger.Sync()
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewProduction</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span><span class="token function">AddCaller</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">defer</span> logger<span class="token punctuation">.</span><span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  logger.Info(<span class="hljs-string">&quot;hello world&quot;</span>)
-&#125;</code></pre></div>
+  logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>输出结果：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;ts&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1587740198.9508286</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;caller&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;caller/main.go:9&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello world&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"ts"</span><span class="token operator">:</span><span class="token number">1587740198.9508286</span><span class="token punctuation">,</span><span class="token property">"caller"</span><span class="token operator">:</span><span class="token string">"caller/main.go:9"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello world"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>有时我们稍微封装了一下记录日志的方法，但是我们希望输出的文件名和行号是调用封装函数的位置，这时可以使用 <code>zap.AddCallerSkip(skip int)</code> 向上跳过：</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Output</span><span class="hljs-params">(msg <span class="hljs-type">string</span>, fields ...zap.Field)</span></span> &#123;
-  zap.L().Info(msg, fields...)
-&#125;
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">Output</span><span class="token punctuation">(</span>msg <span class="token builtin">string</span><span class="token punctuation">,</span> fields <span class="token operator">...</span>zap<span class="token punctuation">.</span>Field<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  zap<span class="token punctuation">.</span><span class="token function">L</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> fields<span class="token operator">...</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  logger, _ := zap.NewProduction(zap.AddCaller(), zap.AddCallerSkip(<span class="hljs-number">1</span>))
-  <span class="hljs-keyword">defer</span> logger.Sync()
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewProduction</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span><span class="token function">AddCaller</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> zap<span class="token punctuation">.</span><span class="token function">AddCallerSkip</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">defer</span> logger<span class="token punctuation">.</span><span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  zap.ReplaceGlobals(logger)
-  Output(<span class="hljs-string">&quot;hello world&quot;</span>)
-&#125;</code></pre></div>
+  zap<span class="token punctuation">.</span><span class="token function">ReplaceGlobals</span><span class="token punctuation">(</span>logger<span class="token punctuation">)</span>
+  <span class="token function">Output</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>输出结果：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;ts&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1587740501.5592482</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;caller&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;skip/main.go:15&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello world&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"ts"</span><span class="token operator">:</span><span class="token number">1587740501.5592482</span><span class="token punctuation">,</span><span class="token property">"caller"</span><span class="token operator">:</span><span class="token string">"skip/main.go:15"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello world"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h3 id="记录堆栈信息"><a href="#记录堆栈信息" class="headerlink" title="记录堆栈信息"></a>记录堆栈信息</h3><p>Zap 提供了 <code>AddStacktrace()</code> 方法，可以记录堆栈信息。<br>前提是必须设置 <code>StacktraceKey</code> 字段，因此 NewExample() 不能输出堆栈信息。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f1</span><span class="hljs-params">()</span></span> &#123;
-  f2(<span class="hljs-string">&quot;hello world&quot;</span>)
-&#125;
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  <span class="token function">f2</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">f2</span><span class="hljs-params">(msg <span class="hljs-type">string</span>, fields ...zap.Field)</span></span> &#123;
-  zap.L().Warn(msg, fields...)
-&#125;
+<span class="token keyword">func</span> <span class="token function">f2</span><span class="token punctuation">(</span>msg <span class="token builtin">string</span><span class="token punctuation">,</span> fields <span class="token operator">...</span>zap<span class="token punctuation">.</span>Field<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  zap<span class="token punctuation">.</span><span class="token function">L</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Warn</span><span class="token punctuation">(</span>msg<span class="token punctuation">,</span> fields<span class="token operator">...</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  logger, _ := zap.NewProduction(zap.AddStacktrace(zapcore.WarnLevel))
-  <span class="hljs-keyword">defer</span> logger.Sync()
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  logger<span class="token punctuation">,</span> <span class="token boolean">_</span> <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewProduction</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span><span class="token function">AddStacktrace</span><span class="token punctuation">(</span>zapcore<span class="token punctuation">.</span>WarnLevel<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token keyword">defer</span> logger<span class="token punctuation">.</span><span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  zap.ReplaceGlobals(logger)
+  zap<span class="token punctuation">.</span><span class="token function">ReplaceGlobals</span><span class="token punctuation">(</span>logger<span class="token punctuation">)</span>
 
-  f1()
-&#125;</code></pre></div>
+  <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>将 <code>zapcore.WarnLevel</code> 传入 <code>AddStacktrace()</code>，之后 Warn 和 Error 级别的日志会输出堆栈，Debug 和 Info 则不会。</p>
 <p>运行结果：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;warn&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;ts&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">1729783529.2137501</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;caller&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ConfessionWallServer/main.go:13&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello world&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;stacktrace&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;main.f2\n\tD:/07_Github/ConfessionWallServer/main.go:13\nmain.f1\n\tD:/07_Github/ConfessionWallServer/main.go:9\nmain.main\n\tD:/07_Github/ConfessionWallServer/main.go:22\nruntime.main\n\tC:/Program Files/Go/src/runtime/proc.go:272&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"warn"</span><span class="token punctuation">,</span><span class="token property">"ts"</span><span class="token operator">:</span><span class="token number">1729783529.2137501</span><span class="token punctuation">,</span><span class="token property">"caller"</span><span class="token operator">:</span><span class="token string">"ConfessionWallServer/main.go:13"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello world"</span><span class="token punctuation">,</span><span class="token property">"stacktrace"</span><span class="token operator">:</span><span class="token string">"main.f2\n\tD:/07_Github/ConfessionWallServer/main.go:13\nmain.f1\n\tD:/07_Github/ConfessionWallServer/main.go:9\nmain.main\n\tD:/07_Github/ConfessionWallServer/main.go:22\nruntime.main\n\tC:/Program Files/Go/src/runtime/proc.go:272"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>将 <code>stacktrace</code> 单独拉出来看：</p>
-<div class="code-wrapper"><pre><code class="hljs log">main.f2
-D:/07_Github/ConfessionWallServer/main.go:13
-    main.f1
-    D:/07_Github/ConfessionWallServer/main.go:9
-        main.main
-        D:/07_Github/ConfessionWallServer/main.go:22
-            runtime.main
-            C:/Program Files/Go/src/runtime/proc.go:272</code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-log" data-language="log"><code class="language-log"><span class="token domain constant">main.f2</span>
+<span class="token file-path string">D:/07_Github/ConfessionWallServer/main.go</span><span class="token operator">:</span><span class="token number">13</span>
+    <span class="token domain constant">main.f1</span>
+    <span class="token file-path string">D:/07_Github/ConfessionWallServer/main.go</span><span class="token operator">:</span><span class="token number">9</span>
+        <span class="token domain constant">main.main</span>
+        <span class="token file-path string">D:/07_Github/ConfessionWallServer/main.go</span><span class="token operator">:</span><span class="token number">22</span>
+            <span class="token domain constant">runtime.main</span>
+            <span class="token file-path string">C:/Program</span> Files<span class="token operator">/</span>Go<span class="token operator">/</span>src<span class="token operator">/</span>runtime<span class="token operator">/</span>proc<span class="token punctuation">.</span>go<span class="token operator">:</span><span class="token number">272</span></code></pre></div></figure>
 
 <p>我们很清楚地看到调用路径。</p>
 <h3 id="预设日志字段"><a href="#预设日志字段" class="headerlink" title="预设日志字段"></a>预设日志字段</h3><p>有些时候我们需要在每条日志中添加一些预设字段，可以通过 <code>zap.Fields(fs ...Field)</code> 来实现。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  logger := zap.NewExample(zap.Fields(
-    zap.Int(<span class="hljs-string">&quot;serverId&quot;</span>, <span class="hljs-number">114514</span>),
-    zap.String(<span class="hljs-string">&quot;serverName&quot;</span>, <span class="hljs-string">&quot;ConfessionWallServer&quot;</span>),
-  ))
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  logger <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewExample</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span><span class="token function">Fields</span><span class="token punctuation">(</span>
+    zap<span class="token punctuation">.</span><span class="token function">Int</span><span class="token punctuation">(</span><span class="token string">"serverId"</span><span class="token punctuation">,</span> <span class="token number">114514</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    zap<span class="token punctuation">.</span><span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"serverName"</span><span class="token punctuation">,</span> <span class="token string">"ConfessionWallServer"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">)</span><span class="token punctuation">)</span>
 
-  logger.Info(<span class="hljs-string">&quot;hello world&quot;</span>)
-&#125;</code></pre></div>
+  logger<span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"hello world"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>输出：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;hello world&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;serverId&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-number">114514</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;serverName&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;ConfessionWallServer&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"hello world"</span><span class="token punctuation">,</span><span class="token property">"serverId"</span><span class="token operator">:</span><span class="token number">114514</span><span class="token punctuation">,</span><span class="token property">"serverName"</span><span class="token operator">:</span><span class="token string">"ConfessionWallServer"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h2 id="设置全局-Logger"><a href="#设置全局-Logger" class="headerlink" title="设置全局 Logger"></a>设置全局 Logger</h2><p>为了方便使用，Zap 提供了 <code>ReplaceGlobals(logger *Logger)</code>，可以将一个 Logger 设置为全局的 Logger。<br><code>zap.L()</code> 获取全局 Logger，<code>zap.S()</code> 获取全局 Sugared Logger。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-  logger := zap.NewExample()
-  <span class="hljs-keyword">defer</span> logger.Sync()
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+  logger <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">NewExample</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">defer</span> logger<span class="token punctuation">.</span><span class="token function">Sync</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
 
-  zap.ReplaceGlobals(logger)
-  zap.L().Info(<span class="hljs-string">&quot;Global Logger&quot;</span>)
-  zap.S().Infof(<span class="hljs-string">&quot;Global %s&quot;</span>, <span class="hljs-string">&quot;Sugared Logger&quot;</span>)
-&#125;</code></pre></div>
+  zap<span class="token punctuation">.</span><span class="token function">ReplaceGlobals</span><span class="token punctuation">(</span>logger<span class="token punctuation">)</span>
+  zap<span class="token punctuation">.</span><span class="token function">L</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Info</span><span class="token punctuation">(</span><span class="token string">"Global Logger"</span><span class="token punctuation">)</span>
+  zap<span class="token punctuation">.</span><span class="token function">S</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Infof</span><span class="token punctuation">(</span><span class="token string">"Global %s"</span><span class="token punctuation">,</span> <span class="token string">"Sugared Logger"</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>输出：</p>
-<div class="code-wrapper"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Logger&quot;</span><span class="hljs-punctuation">&#125;</span>
-<span class="hljs-punctuation">&#123;</span><span class="hljs-attr">&quot;level&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;info&quot;</span><span class="hljs-punctuation">,</span><span class="hljs-attr">&quot;msg&quot;</span><span class="hljs-punctuation">:</span><span class="hljs-string">&quot;Global Sugared Logger&quot;</span><span class="hljs-punctuation">&#125;</span></code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"Global Logger"</span><span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#123;</span><span class="token property">"level"</span><span class="token operator">:</span><span class="token string">"info"</span><span class="token punctuation">,</span><span class="token property">"msg"</span><span class="token operator">:</span><span class="token string">"Global Sugared Logger"</span><span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>注意：若没有设置全局 Logger，则调用 <code>zap.L()</code> 和 <code>zap.S()</code> 并不会有日志输出。</p>
 <h2 id="实现日志滚动"><a href="#实现日志滚动" class="headerlink" title="实现日志滚动"></a>实现日志滚动</h2><p><strong>lumberjack</strong> 是一个高效且易用的日志滚动包，它允许开发人员将日志写入自动滚动的文件中，从而使日志管理更加简单。</p>
-<div class="code-wrapper"><pre><code class="hljs bash">go get -u github.com/natefinch/lumberjack</code></pre></div>
+<figure><div class="code-wrapper"><pre class="language-bash" data-language="bash"><code class="language-bash">go get <span class="token parameter variable">-u</span> github.com/natefinch/lumberjack</code></pre></div></figure>
 
 <p>lumberjack 提供了一个滚动记录器 logger，它实现了 <code>io.Writer</code> 和 <code>io.Closer</code> 接口，我们可以使用 <code>zapcore.AddSync</code> 来将其与 Zap 结合使用。</p>
-<div class="code-wrapper"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;
-    lumberJackLogger := &amp;lumberjack.Logger&#123;
-        Filename:   filename,  <span class="hljs-comment">// 文件路径</span>
-        MaxSize:    maxsize,   <span class="hljs-comment">// 单个日志文件的最大大小（单位为MB）</span>
-        MaxAge:     maxAge,    <span class="hljs-comment">// 保留旧文件的最大天数</span>
-        MaxBackups: maxBackup, <span class="hljs-comment">// 保留旧文件的最大个数</span>
-        Compress:   <span class="hljs-literal">false</span>,     <span class="hljs-comment">// 是否压缩/归档旧文件</span>
-    &#125;
+<figure><div class="code-wrapper"><pre class="language-go" data-language="go"><code class="language-go"><span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    lumberJackLogger <span class="token operator">:=</span> <span class="token operator">&amp;</span>lumberjack<span class="token punctuation">.</span>Logger<span class="token punctuation">&#123;</span>
+        Filename<span class="token punctuation">:</span>   filename<span class="token punctuation">,</span>  <span class="token comment">// 文件路径</span>
+        MaxSize<span class="token punctuation">:</span>    maxsize<span class="token punctuation">,</span>   <span class="token comment">// 单个日志文件的最大大小（单位为MB）</span>
+        MaxAge<span class="token punctuation">:</span>     maxAge<span class="token punctuation">,</span>    <span class="token comment">// 保留旧文件的最大天数</span>
+        MaxBackups<span class="token punctuation">:</span> maxBackup<span class="token punctuation">,</span> <span class="token comment">// 保留旧文件的最大个数</span>
+        Compress<span class="token punctuation">:</span>   <span class="token boolean">false</span><span class="token punctuation">,</span>     <span class="token comment">// 是否压缩/归档旧文件</span>
+    <span class="token punctuation">&#125;</span>
 
-    core := zapcore.NewCore(
-        zapcore.NewJSONEncoder(zap.NewDevelopmentEncoderConfig()),
-        zapcore.AddSync(lumberJackLogger),
-        zapcore.DebugLevel,
-    )
+    core <span class="token operator">:=</span> zapcore<span class="token punctuation">.</span><span class="token function">NewCore</span><span class="token punctuation">(</span>
+        zapcore<span class="token punctuation">.</span><span class="token function">NewJSONEncoder</span><span class="token punctuation">(</span>zap<span class="token punctuation">.</span><span class="token function">NewDevelopmentEncoderConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        zapcore<span class="token punctuation">.</span><span class="token function">AddSync</span><span class="token punctuation">(</span>lumberJackLogger<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        zapcore<span class="token punctuation">.</span>DebugLevel<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span>
 
-    logger := zap.New(core)
-&#125;</code></pre></div>
+    logger <span class="token operator">:=</span> zap<span class="token punctuation">.</span><span class="token function">New</span><span class="token punctuation">(</span>core<span class="token punctuation">)</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <p>更多高级用法请参考 <a target="_blank" rel="noopener" href="https://github.com/natefinch/lumberjack">Github 项目文档</a>，在此不多赘述。</p>
 
