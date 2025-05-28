@@ -19,15 +19,15 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&amp;g">
+    <meta name="description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&gt; 十进制为35的字符 -">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 盲点笔记（一）">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/11/07/cpp-note-ep1/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&amp;g">
+<meta property="og:description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&gt; 十进制为35的字符 -">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-07T12:52:17.000Z">
-<meta property="article:modified_time" content="2024-11-12T11:15:38.483Z">
+<meta property="article:modified_time" content="2025-05-28T13:54:29.880Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="笔记">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          716 字
+          681 字
         
       </span>
     
@@ -369,8 +369,8 @@
 </tr>
 </tbody></table>
 <p>例：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#39;\043&#39; -&gt; 八进制为43的字符 -&gt; 十进制为35的字符 -&gt; &#39;#&#39;
-&#39;\x43&#39; -&gt; 十六进制为43的字符 -&gt; 十进制为67的字符 -&gt; &#39;C&#39;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token char">'\043'</span> <span class="token operator">-></span> 八进制为<span class="token number">43</span>的字符 <span class="token operator">-></span> 十进制为<span class="token number">35</span>的字符 <span class="token operator">-></span> <span class="token char">'#'</span>
+<span class="token char">'\x43'</span> <span class="token operator">-></span> 十六进制为<span class="token number">43</span>的字符 <span class="token operator">-></span> 十进制为<span class="token number">67</span>的字符 <span class="token operator">-></span> <span class="token char">'C'</span></code></pre></div></figure>
 
 <h3 id="ASCII-码"><a href="#ASCII-码" class="headerlink" title="ASCII 码"></a>ASCII 码</h3><p>大致顺序：数字 -&gt; 大写字母 -&gt; 小写字母</p>
 <p><strong>‘0’</strong> (48) - <strong>‘9’</strong> (57)</p>
@@ -380,34 +380,34 @@
 <h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="getchar-函数"><a href="#getchar-函数" class="headerlink" title="getchar() 函数"></a>getchar() 函数</h3><p><code>getchar()</code> 用于读取下一个可用的字符，并将其<strong>作为整数</strong>返回。</p>
 <p>如果读到文件结束或者发生读取错误，则返回 <strong>EOF</strong> (-1).</p>
 <p>常用方法：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char c;
-while ((c &#x3D; getchar()) !&#x3D; EOF) &#123;
-    &#x2F;&#x2F; 一些操作
-&#125;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> c<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h3 id="gets-函数"><a href="#gets-函数" class="headerlink" title="gets() 函数"></a>gets() 函数</h3><p><code>gets()</code> 用于读取一行字符串，并将读取的字符存储到指定的字符数组中。</p>
 <p>换行符 <code>\n</code> 不会被存储到数组中，但在读取过程中会被消耗掉。读取完成后，会在数组末尾添加一个空字符 <code>\0</code> 以终止字符串。</p>
 <p>如果遇到文件结束符或读取错误，返回 <strong>NULL</strong>.</p>
 <p>常用方法：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char str[100];
-while (gets(str) !&#x3D; NULL) &#123;
-    &#x2F;&#x2F; 一些操作
-&#125;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">gets</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h3 id="cin-语句"><a href="#cin-语句" class="headerlink" title="cin 语句"></a>cin 语句</h3><p><code>cin</code> 语句用于读取输入，并将其转换为指定类型的值。</p>
 <p>若缓冲区中第一个字符是分隔符，<code>cin</code> 会将其忽略并清除，继续读取下一个字符，</p>
 <p>但是如果读取成功，字符后面的分隔符是残留在缓冲区的，<code>cin</code> 不做处理。</p>
 <p>常用方法：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">int x;
-while (cin &gt;&gt; x) &#123;
-    &#x2F;&#x2F; 一些操作
-&#125;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> x<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>cin <span class="token operator">>></span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
 <h3 id="cin-getline-函数"><a href="#cin-getline-函数" class="headerlink" title="cin.getline() 函数"></a>cin.getline() 函数</h3><p>类似于<code>gets()</code>.</p>
 <p>常用方法：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char str[100];
-cin.getline(str, 100); &#x2F;&#x2F; 默认以&#39;\0&#39;为截止符
-cin.getline(str, 100, &#39;a&#39;); &#x2F;&#x2F; 以&#39;a&#39;为截止符</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+cin<span class="token punctuation">.</span><span class="token function">getline</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 默认以'\0'为截止符</span>
+cin<span class="token punctuation">.</span><span class="token function">getline</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 以'a'为截止符</span></code></pre></div></figure>
 
 <h3 id="cout-常用控制符"><a href="#cout-常用控制符" class="headerlink" title="cout 常用控制符"></a>cout 常用控制符</h3><table>
 <thead>

@@ -19,15 +19,15 @@
   <meta name="author" content="SugarMGP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&amp;#3">
+    <meta name="description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;\0&#39;&#125;; char s2[6] &#x3D; &quot;Hello&quot;; char s3[] &#x3D; &quot;Hell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C++ 盲点笔记（二）之 C 字符串">
 <meta property="og:url" content="https://blog.sugarmgp.icu/2024/11/12/cpp-note-ep2/index.html">
 <meta property="og:site_name" content="白糖的记事本">
-<meta property="og:description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&amp;#3">
+<meta property="og:description" content="C 字符串声明C 语言没有单独的字符串类型，字符串被当作字符数组，即char[]. 字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。 所有字符串都以\0结束。 &#x2F;&#x2F; 以下三种写法等价 char s1[6] &#x3D; &#123;&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;\0&#39;&#125;; char s2[6] &#x3D; &quot;Hello&quot;; char s3[] &#x3D; &quot;Hell">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-11-12T11:16:29.000Z">
-<meta property="article:modified_time" content="2025-01-10T03:44:13.682Z">
+<meta property="article:modified_time" content="2025-05-28T13:55:07.710Z">
 <meta property="article:author" content="SugarMGP">
 <meta property="article:tag" content="C++">
 <meta property="article:tag" content="笔记">
@@ -261,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1k 字
         
       </span>
     
@@ -272,7 +272,7 @@
         
         
         
-          11 分钟
+          9 分钟
         
       </span>
     
@@ -317,124 +317,124 @@
                 <h2 id="C-字符串"><a href="#C-字符串" class="headerlink" title="C 字符串"></a>C 字符串</h2><h3 id="声明"><a href="#声明" class="headerlink" title="声明"></a>声明</h3><p>C 语言没有单独的字符串类型，字符串被当作字符数组，即<code>char[]</code>.</p>
 <p>字符串变量可以声明成一个字符数组，也可以声明成一个指针，指向一个字符数组。</p>
 <p>所有字符串都以<code>\0</code>结束。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 以下三种写法等价
-char s1[6] &#x3D; &#123;&#39;H&#39;, &#39;e&#39;, &#39;l&#39;, &#39;l&#39;, &#39;o&#39;, &#39;\0&#39;&#125;;
-char s2[6] &#x3D; &quot;Hello&quot;;
-char s3[] &#x3D; &quot;Hello&quot;;
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 以下三种写法等价</span>
+<span class="token keyword">char</span> s1<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">&#123;</span><span class="token char">'H'</span><span class="token punctuation">,</span> <span class="token char">'e'</span><span class="token punctuation">,</span> <span class="token char">'l'</span><span class="token punctuation">,</span> <span class="token char">'l'</span><span class="token punctuation">,</span> <span class="token char">'o'</span><span class="token punctuation">,</span> <span class="token char">'\0'</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> s3<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>
 
-&#x2F;&#x2F; 用指针指向字符数组常量
-char* s4 &#x3D; &quot;Hello&quot;;</code></pre></div></figure>
+<span class="token comment">// 用指针指向字符数组常量</span>
+<span class="token keyword">char</span><span class="token operator">*</span> s4 <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p>若字符数组长度大于字符串长度，则会用<code>\0</code>填充剩余的空间。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; 从 s[6] 到 s[9] 均为 &#39;\0&#39;
-char s[10] &#x3D; &quot;Hello&quot;; </code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// 从 s[6] 到 s[9] 均为 '\0'</span>
+<span class="token keyword">char</span> s<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span> </code></pre></div></figure>
 
 <p>C 语言允许合并多个字符串字面量，如果这些字符串之间只有空格或换行，C 语言会将它们自动合并。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char greeting[50] &#x3D; &quot;Hello, &quot;   &quot;how are you &quot;
-    &quot;today!&quot;;
-&#x2F;&#x2F; 等同于
-char greeting[50] &#x3D; &quot;Hello, how are you today!&quot;;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> greeting<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, "</span>   <span class="token string">"how are you "</span>
+    <span class="token string">"today!"</span><span class="token punctuation">;</span>
+<span class="token comment">// 等同于</span>
+<span class="token keyword">char</span> greeting<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, how are you today!"</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p>对于已经定义的字符数组，我们不能直接使用赋值运算符进行整体赋值，而是必须使用 C 语言提供的<code>strcpy()</code>函数。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char str[10];
-str &#x3D; &quot;Hello&quot;;  &#x2F;&#x2F; 错误：数组名是常量指针，不能作为赋值操作的左值
-strcpy(str, &quot;Hello&quot;);  &#x2F;&#x2F; 正确</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+str <span class="token operator">=</span> <span class="token string">"Hello"</span><span class="token punctuation">;</span>  <span class="token comment">// 错误：数组名是常量指针，不能作为赋值操作的左值</span>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 正确</span></code></pre></div></figure>
 
 <p>若使用指针变量，则可以直接指向字符串常量或字符数组：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char* p;
-p &#x3D; &quot;World&quot;; &#x2F;&#x2F; 指向字符串常量
-*(p+3) &#x3D; &#39;z&#39;;  &#x2F;&#x2F; 错误：常量不能修改
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span><span class="token operator">*</span> p<span class="token punctuation">;</span>
+p <span class="token operator">=</span> <span class="token string">"World"</span><span class="token punctuation">;</span> <span class="token comment">// 指向字符串常量</span>
+<span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token char">'z'</span><span class="token punctuation">;</span>  <span class="token comment">// 错误：常量不能修改</span>
 
-char str[] &#x3D; &quot;Hello, world!&quot;;
-p &#x3D; str; &#x2F;&#x2F; 指向现有的字符数组
-*(p+3) &#x3D; &#39;z&#39;; &#x2F;&#x2F; 合法，等价于 str[3] &#x3D; &#39;z&#39;</code></pre></div></figure>
+<span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, world!"</span><span class="token punctuation">;</span>
+p <span class="token operator">=</span> str<span class="token punctuation">;</span> <span class="token comment">// 指向现有的字符数组</span>
+<span class="token operator">*</span><span class="token punctuation">(</span>p<span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token char">'z'</span><span class="token punctuation">;</span> <span class="token comment">// 合法，等价于 str[3] = 'z'</span></code></pre></div></figure>
 
 <h3 id="strlen-函数"><a href="#strlen-函数" class="headerlink" title="strlen() 函数"></a>strlen() 函数</h3><p><code>strlen()</code>函数返回字符串的字节长度，不包括末尾的空字符<code>\0</code>.</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; string.h
-size_t strlen(const char* s);</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// string.h</span>
+size_t <span class="token function">strlen</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p>它的参数是字符串变量，返回的是<code>size_t</code>类型的无符号整数，除非是极长的字符串，一般情况下当作<code>int</code>处理即可。</p>
 <p>注意，字符串长度<code>strlen()</code>与字符数组长度<code>sizeof()</code>是两个不同的概念。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char s[50] &#x3D; &quot;hello\0world12&quot;;
-cout &lt;&lt; strlen(s) &lt;&lt; endl; &#x2F;&#x2F; 5
-cout &lt;&lt; strlen(s+6) &lt;&lt; endl; &#x2F;&#x2F; 7
-cout &lt;&lt; sizeof(s) &lt;&lt; endl; &#x2F;&#x2F; 50</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> s<span class="token punctuation">[</span><span class="token number">50</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello\0world12"</span><span class="token punctuation">;</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 5</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token function">strlen</span><span class="token punctuation">(</span>s<span class="token operator">+</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 7</span>
+cout <span class="token operator">&lt;&lt;</span> <span class="token keyword">sizeof</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 50</span></code></pre></div></figure>
 
 <h3 id="strcpy-函数"><a href="#strcpy-函数" class="headerlink" title="strcpy() 函数"></a>strcpy() 函数</h3><p><code>strcpy()</code>函数用于将一个字符串复制到一个字符数组中。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; string.h
-char* strcpy(char dest[], const char src[]);</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// string.h</span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">strcpy</span><span class="token punctuation">(</span><span class="token keyword">char</span> dest<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span> src<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p><code>strcpy()</code>的返回值是一个字符串指针，指向第一个参数，故可以连续为多个字符数组赋值。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char str1[20] &#x3D; &quot;Hello, I&#39;m C0dd1y&quot;;
-char str2[20] &#x3D; &quot;C0dd1y&quot;;
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str1<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, I'm C0dd1y"</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> str2<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"C0dd1y"</span><span class="token punctuation">;</span>
 
-strcpy(str2, strcpy(str1 + 11, &quot;SugarMGP&quot;));
-cout &lt;&lt; str1 &lt;&lt; endl; &#x2F;&#x2F; Hello, I&#39;m SugarMGP
-cout &lt;&lt; str2 &lt;&lt; endl; &#x2F;&#x2F; SugarMGP</code></pre></div></figure>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>str2<span class="token punctuation">,</span> <span class="token function">strcpy</span><span class="token punctuation">(</span>str1 <span class="token operator">+</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token string">"SugarMGP"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+cout <span class="token operator">&lt;&lt;</span> str1 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// Hello, I'm SugarMGP</span>
+cout <span class="token operator">&lt;&lt;</span> str2 <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// SugarMGP</span></code></pre></div></figure>
 
 <p>另外，不能使用<code>strcpy()</code>对没初始化的字符指针赋值。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char* str; &#x2F;&#x2F; 未初始化，指向随机位置
-strcpy(str, &quot;hello world&quot;); &#x2F;&#x2F; 错误</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span><span class="token operator">*</span> str<span class="token punctuation">;</span> <span class="token comment">// 未初始化，指向随机位置</span>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token string">"hello world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 错误</span></code></pre></div></figure>
 
 <p>程C老师给我们写的神金示例，好孩子千万不要这样写码哦：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char s[81]&#x3D;&quot;apple***\0s1234567&quot;;
-char s2[81]&#x3D;&quot;abc&quot;;
-cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F; apple***
-cout &lt;&lt; s+9 &lt;&lt; endl; &#x2F;&#x2F; s1234567
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> s<span class="token punctuation">[</span><span class="token number">81</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"apple***\0s1234567"</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">81</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"abc"</span><span class="token punctuation">;</span>
+cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// apple***</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">9</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// s1234567</span>
 	
-strcpy(s,s2); &#x2F;&#x2F; abc\0e***\0s1234567
-cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F; abc
-cout &lt;&lt; s+4 &lt;&lt; endl; &#x2F;&#x2F; e***
-cout &lt;&lt; s+9 &lt;&lt; endl; &#x2F;&#x2F; s1234567</code></pre></div></figure>
+<span class="token function">strcpy</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// abc\0e***\0s1234567</span>
+cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// abc</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">4</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// e***</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">9</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// s1234567</span></code></pre></div></figure>
 
 <h3 id="strcat-函数"><a href="#strcat-函数" class="headerlink" title="strcat() 函数"></a>strcat() 函数</h3><p><code>strcat()</code>函数用于将一个字符串追加到另一个字符串的末尾。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; string.h
-char* strcat(char* s1, const char* s2);</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// string.h</span>
+<span class="token keyword">char</span><span class="token operator">*</span> <span class="token function">strcat</span><span class="token punctuation">(</span><span class="token keyword">char</span><span class="token operator">*</span> s1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p><code>strcat()</code>的返回值是一个字符串指针，同样指向第一个参数。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char s1[12] &#x3D; &quot;hello&quot;;
-char s2[6] &#x3D; &quot;world&quot;;
-strcat(s1, strcat(s2, &quot;, SugarMGP&quot;));
-puts(s1); &#x2F;&#x2F; &quot;helloworld, SugarMGP&quot;</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> s1<span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"world"</span><span class="token punctuation">;</span>
+<span class="token function">strcat</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> <span class="token function">strcat</span><span class="token punctuation">(</span>s2<span class="token punctuation">,</span> <span class="token string">", SugarMGP"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">puts</span><span class="token punctuation">(</span>s1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "helloworld, SugarMGP"</span></code></pre></div></figure>
 
 <p>同样也举个神金示例：</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char s[81]&#x3D;&quot;apple***\0s1234567&quot;;
-char s2[81]&#x3D;&quot;abc&quot;;
-cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F; apple***
-cout &lt;&lt; s+9 &lt;&lt; endl; &#x2F;&#x2F; s1234567
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> s<span class="token punctuation">[</span><span class="token number">81</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"apple***\0s1234567"</span><span class="token punctuation">;</span>
+<span class="token keyword">char</span> s2<span class="token punctuation">[</span><span class="token number">81</span><span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"abc"</span><span class="token punctuation">;</span>
+cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// apple***</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">9</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// s1234567</span>
 
-strcat(s,s2); &#x2F;&#x2F; apple***abc\034567\0
-cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F; apple***abc
-cout &lt;&lt; s+12 &lt;&lt; endl; &#x2F;&#x2F; 34567
+<span class="token function">strcat</span><span class="token punctuation">(</span>s<span class="token punctuation">,</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// apple***abc\034567\0</span>
+cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// apple***abc</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">12</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 34567</span>
 
-strcat(s+12,s2); &#x2F;&#x2F; apple***abc\034567abc\0
-cout &lt;&lt; s &lt;&lt; endl; &#x2F;&#x2F; apple***abc
-cout &lt;&lt; s+12 &lt;&lt; endl; &#x2F;&#x2F; 34567abc</code></pre></div></figure>
+<span class="token function">strcat</span><span class="token punctuation">(</span>s<span class="token operator">+</span><span class="token number">12</span><span class="token punctuation">,</span>s2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// apple***abc\034567abc\0</span>
+cout <span class="token operator">&lt;&lt;</span> s <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// apple***abc</span>
+cout <span class="token operator">&lt;&lt;</span> s<span class="token operator">+</span><span class="token number">12</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 34567abc</span></code></pre></div></figure>
 
 <h3 id="strcmp-函数"><a href="#strcmp-函数" class="headerlink" title="strcmp() 函数"></a>strcmp() 函数</h3><p><code>strcmp()</code>函数用于比较两个字符串的内容。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; string.h
-int strcmp(const char* s1, const char* s2);</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// string.h</span>
+<span class="token keyword">int</span> <span class="token function">strcmp</span><span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s1<span class="token punctuation">,</span> <span class="token keyword">const</span> <span class="token keyword">char</span><span class="token operator">*</span> s2<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div></figure>
 
 <p>按照字典顺序，若<code>s1</code>小于<code>s2</code>，则返回负值；若<code>s1</code>大于<code>s2</code>，则返回正值；若<code>s1</code>等于<code>s2</code>，则返回零。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">&#x2F;&#x2F; s1 &#x3D; Happy New Year
-&#x2F;&#x2F; s2 &#x3D; Happy New Year
-&#x2F;&#x2F; s3 &#x3D; Happy Holidays
-strcmp(s1, s2) &#x2F;&#x2F; 0
-strcmp(s1, s3) &#x2F;&#x2F; 正值 (&#39;N&#39;&gt;&#39;H&#39;)</code></pre></div></figure>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token comment">// s1 = Happy New Year</span>
+<span class="token comment">// s2 = Happy New Year</span>
+<span class="token comment">// s3 = Happy Holidays</span>
+<span class="token function">strcmp</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s2<span class="token punctuation">)</span> <span class="token comment">// 0</span>
+<span class="token function">strcmp</span><span class="token punctuation">(</span>s1<span class="token punctuation">,</span> s3<span class="token punctuation">)</span> <span class="token comment">// 正值 ('N'>'H')</span></code></pre></div></figure>
 
 <h3 id="strchr-和-strstr"><a href="#strchr-和-strstr" class="headerlink" title="strchr() 和 strstr()"></a>strchr() 和 strstr()</h3><p><code>strchr()</code>函数用于在字符串中查找某个字符，并返回该字符第一次出现的位置。</p>
 <p><code>strstr()</code>函数用于在字符串中查找另一个字符串的第一次出现的位置。</p>
-<figure><div class="code-wrapper"><pre class="language-c++" data-language="c++"><code class="language-c++">char str[] &#x3D; &quot;Hello, world!&quot;;
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">"Hello, world!"</span><span class="token punctuation">;</span>
 
-char* p &#x3D; strchr(str, &#39;l&#39;);
-if (p !&#x3D; NULL) &#123;
-    cout &lt;&lt; p - str &lt;&lt; endl; &#x2F;&#x2F; 得到&#39;l&#39;第一次出现的下标为 2
-&#125;
+<span class="token keyword">char</span><span class="token operator">*</span> p <span class="token operator">=</span> <span class="token function">strchr</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token char">'l'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> p <span class="token operator">-</span> str <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 得到'l'第一次出现的下标为 2</span>
+<span class="token punctuation">&#125;</span>
 
-char* q &#x3D; strstr(str, &quot;world&quot;);
-if (q !&#x3D; NULL) &#123;
-    cout &lt;&lt; q - str &lt;&lt; endl; &#x2F;&#x2F; 得到&#39;world&#39;第一次出现的下标为 7
-&#125;</code></pre></div></figure>
+<span class="token keyword">char</span><span class="token operator">*</span> q <span class="token operator">=</span> <span class="token function">strstr</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token string">"world"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>q <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    cout <span class="token operator">&lt;&lt;</span> q <span class="token operator">-</span> str <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">// 得到'world'第一次出现的下标为 7</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
 
                 
               </div>
