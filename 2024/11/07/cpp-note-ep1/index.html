@@ -1,0 +1,934 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/icon.png">
+  <link rel="icon" href="/img/icon.png">
+  
+    <link rel="canonical" href="https://blog.sugarmgp.cn/2024/11/07/cpp-note-ep1/"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="SugarMGP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&gt; 十进制为35的字符 -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 盲点笔记（一）">
+<meta property="og:url" content="https://blog.sugarmgp.cn/2024/11/07/cpp-note-ep1/index.html">
+<meta property="og:site_name" content="白糖的记事本">
+<meta property="og:description" content="字符转义字符   转义字符 含义 ASCII码值    \0 空字符（字符串的结束标志） 0   \a 响铃（错误音效） 7   \t 水平制表符 9   \n 换行符 10   \“ 双引号 34   \‘ 单引号 39   \\ 反斜杠 92   \ddd 八进制表示的字符 *   \xhh 十六进制表示的字符 *   例： &#39;\043&#39; -&gt; 八进制为43的字符 -&gt; 十进制为35的字符 -">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-07T12:52:17.000Z">
+<meta property="article:modified_time" content="2025-06-17T11:21:26.000Z">
+<meta property="article:author" content="SugarMGP">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="笔记">
+<meta property="article:tag" content="输入输出">
+<meta property="article:tag" content="字符">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>C++ 盲点笔记（一） - 白糖的记事本</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.sugarmgp.cn","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":60,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":false,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":"https://umami.sugarmgp.cn/script.js","website_id":"083fe852-42ba-4bf6-9ed1-c49b2b37f4e1","domains":null,"start_time":null,"token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        let umami = document.createElement('script');
+        umami.async = true;
+        umami.src = "https://umami.sugarmgp.cn/script.js";
+        umami.setAttribute("data-website-id", "083fe852-42ba-4bf6-9ed1-c49b2b37f4e1");
+        umami.setAttribute("data-domains", "");
+        document.head.appendChild(umami);
+      }
+    </script>
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/rss2.xml" title="白糖的记事本" type="application/rss+xml">
+</head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>SugarMGP&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/" target="_self">
+                <i class="iconfont icon-link-fill"></i>
+                <span>友链</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/rss2.xml" target="_self">
+                <i class="iconfont icon-rss-fill"></i>
+                <span>订阅</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.webp') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="C++ 盲点笔记（一）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-07 20:52" pubdate>
+          2024年11月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          681 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">C++ 盲点笔记（一）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-06-17T19:21:26+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="字符"><a href="#字符" class="headerlink" title="字符"></a>字符</h2><h3 id="转义字符"><a href="#转义字符" class="headerlink" title="转义字符"></a>转义字符</h3><table>
+<thead>
+<tr>
+<th>转义字符</th>
+<th>含义</th>
+<th>ASCII码值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>\0</td>
+<td>空字符（字符串的结束标志）</td>
+<td>0</td>
+</tr>
+<tr>
+<td>\a</td>
+<td>响铃（错误音效）</td>
+<td>7</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>水平制表符</td>
+<td>9</td>
+</tr>
+<tr>
+<td>\n</td>
+<td>换行符</td>
+<td>10</td>
+</tr>
+<tr>
+<td>\“</td>
+<td>双引号</td>
+<td>34</td>
+</tr>
+<tr>
+<td>\‘</td>
+<td>单引号</td>
+<td>39</td>
+</tr>
+<tr>
+<td>\\</td>
+<td>反斜杠</td>
+<td>92</td>
+</tr>
+<tr>
+<td>\ddd</td>
+<td>八进制表示的字符</td>
+<td>*</td>
+</tr>
+<tr>
+<td>\xhh</td>
+<td>十六进制表示的字符</td>
+<td>*</td>
+</tr>
+</tbody></table>
+<p>例：</p>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token char">'\043'</span> <span class="token operator">-></span> 八进制为<span class="token number">43</span>的字符 <span class="token operator">-></span> 十进制为<span class="token number">35</span>的字符 <span class="token operator">-></span> <span class="token char">'#'</span>
+<span class="token char">'\x43'</span> <span class="token operator">-></span> 十六进制为<span class="token number">43</span>的字符 <span class="token operator">-></span> 十进制为<span class="token number">67</span>的字符 <span class="token operator">-></span> <span class="token char">'C'</span></code></pre></div></figure>
+
+<h3 id="ASCII-码"><a href="#ASCII-码" class="headerlink" title="ASCII 码"></a>ASCII 码</h3><p>大致顺序：数字 -&gt; 大写字母 -&gt; 小写字母</p>
+<p><strong>‘0’</strong> (48) - <strong>‘9’</strong> (57)</p>
+<p><strong>‘A’</strong> (65) - <strong>‘Z’</strong> (90)</p>
+<p><strong>‘a’</strong> (97) - <strong>‘z’</strong> (122)</p>
+<p>完整码表请参考：<a target="_blank" rel="noopener" href="https://www.runoob.com/w3cnote/ascii.html">ASCII 表</a></p>
+<h2 id="输入输出"><a href="#输入输出" class="headerlink" title="输入输出"></a>输入输出</h2><h3 id="getchar-函数"><a href="#getchar-函数" class="headerlink" title="getchar() 函数"></a>getchar() 函数</h3><p><code>getchar()</code> 用于读取下一个可用的字符，并将其<strong>作为整数</strong>返回。</p>
+<p>如果读到文件结束或者发生读取错误，则返回 <strong>EOF</strong> (-1).</p>
+<p>常用方法：</p>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> c<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>c <span class="token operator">=</span> <span class="token function">getchar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">EOF</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
+
+<h3 id="gets-函数"><a href="#gets-函数" class="headerlink" title="gets() 函数"></a>gets() 函数</h3><p><code>gets()</code> 用于读取一行字符串，并将读取的字符存储到指定的字符数组中。</p>
+<p>换行符 <code>\n</code> 不会被存储到数组中，但在读取过程中会被消耗掉。读取完成后，会在数组末尾添加一个空字符 <code>\0</code> 以终止字符串。</p>
+<p>如果遇到文件结束符或读取错误，返回 <strong>NULL</strong>.</p>
+<p>常用方法：</p>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token function">gets</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token constant">NULL</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
+
+<h3 id="cin-语句"><a href="#cin-语句" class="headerlink" title="cin 语句"></a>cin 语句</h3><p><code>cin</code> 语句用于读取输入，并将其转换为指定类型的值。</p>
+<p>若缓冲区中第一个字符是分隔符，<code>cin</code> 会将其忽略并清除，继续读取下一个字符，</p>
+<p>但是如果读取成功，字符后面的分隔符是残留在缓冲区的，<code>cin</code> 不做处理。</p>
+<p>常用方法：</p>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> x<span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>cin <span class="token operator">>></span> x<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment">// 一些操作</span>
+<span class="token punctuation">&#125;</span></code></pre></div></figure>
+
+<h3 id="cin-getline-函数"><a href="#cin-getline-函数" class="headerlink" title="cin.getline() 函数"></a>cin.getline() 函数</h3><p>类似于<code>gets()</code>.</p>
+<p>常用方法：</p>
+<figure><div class="code-wrapper"><pre class="language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">char</span> str<span class="token punctuation">[</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+cin<span class="token punctuation">.</span><span class="token function">getline</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 默认以'\0'为截止符</span>
+cin<span class="token punctuation">.</span><span class="token function">getline</span><span class="token punctuation">(</span>str<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token char">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 以'a'为截止符</span></code></pre></div></figure>
+
+<h3 id="cout-常用控制符"><a href="#cout-常用控制符" class="headerlink" title="cout 常用控制符"></a>cout 常用控制符</h3><table>
+<thead>
+<tr>
+<th>控制符</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>*dec</td>
+<td>十进制输出</td>
+</tr>
+<tr>
+<td>hex</td>
+<td>十六进制输出</td>
+</tr>
+<tr>
+<td>oct</td>
+<td>八进制输出</td>
+</tr>
+<tr>
+<td>setprecision(n)</td>
+<td>设置实数的精度</td>
+</tr>
+<tr>
+<td>setbase(n)</td>
+<td>设置整数的基数(只能为 8, 10 或 16)</td>
+</tr>
+<tr>
+<td>setfill(c)</td>
+<td>设置填充字符</td>
+</tr>
+<tr>
+<td>setw(n)</td>
+<td>设置字段宽度</td>
+</tr>
+<tr>
+<td>boolalpha</td>
+<td>把 true 和 false 输出为字符串</td>
+</tr>
+<tr>
+<td>*noboolalpha</td>
+<td>把 true 和 false 输出为数字</td>
+</tr>
+<tr>
+<td>left</td>
+<td>左对齐输出</td>
+</tr>
+<tr>
+<td>*right</td>
+<td>右对齐输出</td>
+</tr>
+<tr>
+<td>internal</td>
+<td>内部对齐输出</td>
+</tr>
+<tr>
+<td>fixed</td>
+<td>固定小数位数输出</td>
+</tr>
+<tr>
+<td>scientific</td>
+<td>科学计数法输出</td>
+</tr>
+<tr>
+<td>endl</td>
+<td>换行并刷新缓冲区</td>
+</tr>
+</tbody></table>
+<p>注意：</p>
+<ul>
+<li>带<code>*</code>的控制符表示默认生效。</li>
+<li><code>setw</code> 只对<strong>其后的第一个输出项</strong>有效。</li>
+<li><code>internal</code> 指<strong>符号位左对齐</strong>，<strong>数值右对齐</strong>，中间由填充字符填充。</li>
+<li><code>setprecision</code> 默认代表<strong>有效数字</strong>，在以 <code>fixed</code> 和 <code>scientific</code> 形式输出时代表<strong>小数位数</strong>。</li>
+<li><code>endl</code> 不是一个字符，它等价于 <code>putchar(&#39;\n&#39;)</code> 和 <code>fflush(stdout)</code>.</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/C/" class="print-no-link">#C++</a>
+      
+        <a href="/tags/%E7%AC%94%E8%AE%B0/" class="print-no-link">#笔记</a>
+      
+        <a href="/tags/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" class="print-no-link">#输入输出</a>
+      
+        <a href="/tags/%E5%AD%97%E7%AC%A6/" class="print-no-link">#字符</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>C++ 盲点笔记（一）</div>
+      <div>https://blog.sugarmgp.cn/2024/11/07/cpp-note-ep1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>SugarMGP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/12/cpp-note-ep2/" title="C++ 盲点笔记（二）之 C 字符串">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">C++ 盲点笔记（二）之 C 字符串</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/10/24/zap/" title="使用 Zap 实现高性能日志记录">
+                        <span class="hidden-mobile">使用 Zap 实现高性能日志记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+    <div id="giscus" class="giscus"></div>
+    <script type="text/javascript">
+      Fluid.utils.loadComments('#giscus', function() {
+        var options = {"repo":"SugarMGP/HexoBlog","repo-id":"R_kgDONCrdxQ","category":"Announcements","category-id":"DIC_kwDONCrdxc4Cjnod","theme-light":"light","theme-dark":"dark","mapping":"pathname","reactions-enabled":1,"emit-metadata":0,"input-position":"top","lang":"zh-CN"};
+        var attributes = {};
+        for (let option in options) {
+          if (!option.startsWith('theme-')) {
+            var key = option.startsWith('data-') ? option : 'data-' + option;
+            attributes[key] = options[option];
+          }
+        }
+        var light = 'light';
+        var dark = 'dark';
+        window.GiscusThemeLight = light;
+        window.GiscusThemeDark = dark;
+        attributes['data-theme'] = document.documentElement.getAttribute('data-user-color-scheme') === 'dark' ? dark : light;
+        for (let attribute in attributes) {
+          var value = attributes[attribute];
+          if (value === undefined || value === null || value === '') {
+            delete attributes[attribute];
+          }
+        }
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://giscus.app/client.js');
+        s.setAttribute('crossorigin', 'anonymous');
+        for (let attribute in attributes) {
+          s.setAttribute(attribute, attributes[attribute]);
+        }
+        var ss = document.getElementsByTagName('script');
+        var e = ss.length > 0 ? ss[ss.length - 1] : document.head || document.documentElement;
+        e.parentNode.insertBefore(s, e.nextSibling);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <div> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> <div> <a href="https://icp.gov.moe/?keyword=20250998" target="_blank">萌ICP备20250998号</a> </div> <div> <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </div>
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
